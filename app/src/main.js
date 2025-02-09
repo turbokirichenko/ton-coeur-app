@@ -1,9 +1,6 @@
-import { mount } from 'svelte'
+import { bootstrap } from "./App/bootstrap";
 import './app.css'
-import App from './App.svelte'
 
-const app = mount(App, {
-  target: document.getElementById('app'),
-})
+const app = bootstrap();
 
-export default app
+export default app;
