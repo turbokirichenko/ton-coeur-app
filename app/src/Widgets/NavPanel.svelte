@@ -1,19 +1,35 @@
 <script>
   import Archive from "../../public/nav/archive.png";
+  import ArchiveRed from "../../public/nav/archive-red.png";
   import Question from "../../public/nav/question.png";
+  import QuestionRed from "../../public/nav/question-red.png";
   import Hearts from "../../public/button/hearts.png";
+  import { router, navigate } from "../Shared/Lib/router.svelte";
 
-  export let count;
+  let { count, target } = $props();
+
+  let archiveImg = $derived(router.route === "archive" ? ArchiveRed : Archive);
+  let questionImg = $derived(router.route === "about" ? QuestionRed : Question);
+
+  function open(route) {
+    router.route === route ? navigate("") : navigate(route);
+  }
 </script>
 
 <nav class="nav-panel">
   <div class="nav-panel__buttons">
-    <img src={Archive} class="archive-img nav-img" alt="archive" />
-    <img src={Question} class="question-img nav-img" alt="question" />
+    <a href="#top" onclick={() => open("archive")}>
+      <img src={archiveImg} class="archive-img nav-img" alt="archive" />
+    </a>
+    <a href="#top" onclick={() => open("about")}>
+      <img src={questionImg} class="question-img nav-img" alt="question" />
+    </a>
   </div>
   <div class="nav-panel__userinfo">
     <div class="count">
       <span class="count-text">{count}</span>
+      <span class="count-text">/</span>
+      <span class="count-text red-text">{target}</span>
       <img class="count-img" src={Hearts} alt="count hearts" />
     </div>
     <div class="avatar"></div>
@@ -36,11 +52,12 @@
     margin-right: 20px;
   }
   .count {
+    min-width: 152px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 10px;
-    justify-content: space-between;
+    gap: 6px;
+    justify-content: flex-end;
     float: left;
     background-color: #00000088;
     border-radius: 15px;
@@ -53,6 +70,9 @@
     line-height: 18px;
     font-weight: 800;
     text-align: center;
+  }
+  .red-text {
+    color: #f23737;
   }
   .count-img {
     display: block;

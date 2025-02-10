@@ -1,9 +1,13 @@
 <script>
   import Arrow from "../../public/button/arrow.png";
   import Hearts from "../../public/button/hearts.png";
+  import { fly } from "svelte/transition";
 </script>
 
-<button class="send-button some-dark-container">
+<button
+  transition:fly={{ y: 150, duration: 1000 }}
+  class="send-button some-dark-container"
+>
   <article class="send-button__left-slot">
     <img class="slot-image" src={Hearts} alt="hearts" />
   </article>

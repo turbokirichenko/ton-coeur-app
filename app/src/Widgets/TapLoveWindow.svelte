@@ -1,4 +1,5 @@
 <script>
+  import { fly } from "svelte/transition";
   import { imagesByGrade, grades } from "../Shared/Config/rules";
   let { count } = $props();
   let imageIndex = $derived(getImageIndex(count));
@@ -6,36 +7,42 @@
   function getImageIndex(cnt) {
     let detected = 0;
     grades.find((value, index) => {
-      console.log(detected, count, value);
       if (cnt < value) {
         detected = index - 1;
         return true;
       }
       return false;
     });
-    console.log(detected);
     return detected;
   }
 </script>
 
-<div class="tap-love-window some-dark-container">
-  <div class="tap-love-window__header">
-    <h3>There is the RED heart</h3>
+{#key imageIndex}
+  <div
+    in:fly={{ x: -100, duration: 1000 }}
+    out:fly={{ x: 100, duration: 1000 }}
+    class="tap-love-window some-dark-container"
+  >
+    <div class="tap-love-window__header">
+      <h3>There is the RED heart</h3>
+    </div>
+    <div class="tap-love-window__description">
+      <p>you tap 100,345 and</p>
+      <p>this gift almost be the</p>
+      <p>wonderful in my memory</p>
+    </div>
+    <div class="tap-love-window__image">
+      <div
+        class="tap-love-image"
+        style="background-image: url({imagesByGrade[imageIndex]})"
+      ></div>
+    </div>
   </div>
-  <div class="tap-love-window__description">
-    <p>you tap 100,345 and</p>
-    <p>this gift almost be the</p>
-    <p>wonderful in my memory</p>
-  </div>
-  <div class="tap-love-window__image">
-    {#if imageIndex > 0}
-      <img class="tap-love-image" src={imagesByGrade[imageIndex]} alt="heart" />
-    {/if}
-  </div>
-</div>
+{/key}
 
 <style>
   .tap-love-window {
+    position: absolute;
     width: 100%;
     height: 100%;
     display: flex;
@@ -57,9 +64,15 @@
     height: 207px;
   }
   .tap-love-image {
+    display: block;
     max-width: 100%;
     max-height: 100%;
-    display: block;
+    width: 100%;
+    height: 100%;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
     margin: auto;
+    pointer-events: none;
   }
 </style>
