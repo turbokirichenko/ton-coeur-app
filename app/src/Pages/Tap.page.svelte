@@ -9,6 +9,7 @@
   import TapContent from "../Widgets/TapContent.svelte";
   import TapLoveWindow from "../Widgets/TapLoveWindow.svelte";
   import TapSendButton from "../Widgets/TapSendButton.svelte";
+  import { fly } from "svelte/transition";
 </script>
 
 <main class="tap-page">
@@ -21,19 +22,30 @@
       <TapSendButton slot="button" />
     </TapContent>
   </section>
-  {#if router.route}
-    <section class="tap-page__popup">
-      {#if router.route === "archive"}
-        <PopupWindow>
-          <Archive slot="content" {items} />
-        </PopupWindow>
-      {:else if router.route === "about"}
-        <PopupWindow>
-          <About slot="content" />
-        </PopupWindow>
-      {:else if router.route === "share"}
-        <PopupWindow />
-      {/if}
+  {#if router.route === "archive"}
+    <section
+      transition:fly={{ y: 1000, duration: 1000 }}
+      class="tap-page__popup"
+    >
+      <PopupWindow>
+        <Archive slot="content" {items} />
+      </PopupWindow>
+    </section>
+  {:else if router.route === "about"}
+    <section
+      transition:fly={{ y: 1000, duration: 1000 }}
+      class="tap-page__popup"
+    >
+      <PopupWindow>
+        <About slot="content" />
+      </PopupWindow>
+    </section>
+  {:else if router.route === "share"}
+    <section
+      transition:fly={{ y: 1000, duration: 1000 }}
+      class="tap-page__popup"
+    >
+      <PopupWindow />
     </section>
   {/if}
 </main>
@@ -61,7 +73,7 @@
   .tap-page__popup {
     position: absolute;
     width: 96vw;
-    max-width: 380px;
+    max-width: 560px;
     height: max(380px, calc(100vh - 96px));
     left: 50%;
     transform: translate(-50%, 0);

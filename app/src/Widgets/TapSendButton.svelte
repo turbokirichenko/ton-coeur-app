@@ -1,6 +1,6 @@
 <script>
-  import Arrow from "../../public/button/arrow.png";
-  import Hearts from "../../public/button/hearts.png";
+  import Arrow from "/button/arrow.png";
+  import Hearts from "/button/hearts.png";
   import { fly } from "svelte/transition";
 </script>
 

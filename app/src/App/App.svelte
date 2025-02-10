@@ -21,7 +21,7 @@
     height: 100%;
     top: 0;
     left: 0;
-    background-image: url("../../public/page/background-2.2.png"),
+    background-image: url("/page/background-2.2.png"),
       linear-gradient(#5e1fa5, #250c42);
     background-size: 14rem;
     background-repeat: repeat;

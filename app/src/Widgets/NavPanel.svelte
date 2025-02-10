@@ -1,9 +1,9 @@
 <script>
-  import Archive from "../../public/nav/archive.png";
-  import ArchiveRed from "../../public/nav/archive-red.png";
-  import Question from "../../public/nav/question.png";
-  import QuestionRed from "../../public/nav/question-red.png";
-  import Hearts from "../../public/button/hearts.png";
+  import Archive from "/nav/archive.png";
+  import ArchiveRed from "/nav/archive-red.png";
+  import Question from "/nav/question.png";
+  import QuestionRed from "/nav/question-red.png";
+  import Hearts from "/button/hearts.png";
   import { router, navigate } from "../Shared/Lib/router.svelte";
 
   let { count, target } = $props();

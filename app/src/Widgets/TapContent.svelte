@@ -2,7 +2,7 @@
   import { userData } from "../Entities/User";
   import { grades } from "../Shared/Config/rules";
   import { fly } from "svelte/transition";
-  import HeartFly from "../../public/effect/vecteezy_red-heart-icon_45925862.png";
+  import HeartFly from "/effect/vecteezy_red-heart-icon_45925862.png";
 
   const heartQueue = $state([]);
 
