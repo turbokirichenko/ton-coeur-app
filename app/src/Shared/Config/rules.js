@@ -6,6 +6,7 @@ import img4 from '/tap/heart-4.png';
 import img5 from '/tap/heart-5.png';
 import img6 from '/tap/heart-6.png';
 
+const base = import.meta.env.VITE_BASE_URL;
 const node_env = 'DEVELOPMENT';
 const gradesProd = [
     0,
@@ -43,7 +44,7 @@ export const windowStateByGrade = {
     0: {
         background: {
             linearGradient: ['#5e1fa5', '#250c42'],
-            url: '/page/background-2.2.png'
+            url: `${base}/page/background-2.2.png`
         },
         postcard: {
             header: "Just to tap ❤️",
@@ -57,7 +58,7 @@ export const windowStateByGrade = {
     1: {
         background: {
             linearGradient: ['#B53259', '#290727'],
-            url: '/page/background-2.2.png'
+            url: `${base}/page/background-2.2.png`
         },
         postcard: {
             header: "Gentle warmth",
@@ -71,7 +72,7 @@ export const windowStateByGrade = {
     2: {
         background: {
             linearGradient: ['#856CFF', '#191162'],
-            url: '/page/background-2.2.png'
+            url: `${base}/page/background-2.2.png`
         },
         postcard: {
             header: "Tender admiration",
@@ -84,7 +85,7 @@ export const windowStateByGrade = {
     3: {
         background: {
             linearGradient: ['#5e1fa5', '#250c42'],
-            url: '/page/background-2.2.png',
+            url: `${base}/page/background-2.2.png`,
         },
         postcard: {
             header: "Passionate affection",
@@ -97,7 +98,7 @@ export const windowStateByGrade = {
     4: {
         background: {
             linearGradient: ['#F07C93', '#F07C93'],
-            url: '/page/background-1.2.png',
+            url: `${base}/page/background-2.2.png`
         },
         postcard: {
             header: "Irresistible love",
@@ -111,7 +112,7 @@ export const windowStateByGrade = {
     5: {
         background: {
             linearGradient: ['#FCD9EC', '#FCD9EC'],
-            url: '/page/background-2.2.png',
+            url: `${base}/page/background-2.2.png`
         },
         postcard: {
             header: "Unbreakable bond",
@@ -124,7 +125,7 @@ export const windowStateByGrade = {
     6: {
         background: {
             linearGradient: ['#FCD9EC', '#F07C93'],
-            url: '/page/background-2.2.png',
+            url: `${base}/page/background-2.2.png`
         },
         postcard: {
             header: "Pure devotion",
