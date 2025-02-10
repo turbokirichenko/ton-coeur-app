@@ -1,5 +1,6 @@
 import { bootstrap } from "./App/bootstrap";
-import './app.css'
+import './Shared/Styles/app.css';
+import './Shared/Styles/animations.css';
 
 const app = bootstrap();
 

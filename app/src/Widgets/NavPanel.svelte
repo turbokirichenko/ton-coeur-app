@@ -5,8 +5,9 @@
   import QuestionRed from "/nav/question-red.png";
   import Hearts from "/button/hearts.png";
   import { router, navigate } from "../Shared/Lib/router.svelte";
+  import { grades } from "../Shared/Config/rules";
 
-  let { count, target } = $props();
+  let { count, target, grade } = $props();
 
   let archiveImg = $derived(router.route === "archive" ? ArchiveRed : Archive);
   let questionImg = $derived(router.route === "about" ? QuestionRed : Question);
@@ -27,9 +28,13 @@
   </div>
   <div class="nav-panel__userinfo">
     <div class="count">
-      <span class="count-text">{count}</span>
-      <span class="count-text">/</span>
-      <span class="count-text red-text">{target}</span>
+      {#if grade >= grades.length - 1}
+        <span class="count-text green-text scaling">{count}</span>
+      {:else}
+        <span class="count-text">{count}</span>
+        <span class="count-text">/</span>
+        <span class="count-text red-text">{target}</span>
+      {/if}
       <img class="count-img" src={Hearts} alt="count hearts" />
     </div>
     <div class="avatar"></div>
@@ -74,6 +79,9 @@
   .red-text {
     color: #f23737;
   }
+  .green-text {
+    color: lime;
+  }
   .count-img {
     display: block;
     width: 16px;
@@ -87,5 +95,11 @@
     border-radius: 20px;
     margin-left: 16px;
     background-color: #f9f9f9;
+  }
+  .scaling {
+    animation-name: scale;
+    animation-duration: 3s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
   }
 </style>

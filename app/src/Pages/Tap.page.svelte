@@ -10,44 +10,53 @@
   import TapLoveWindow from "../Widgets/TapLoveWindow.svelte";
   import TapSendButton from "../Widgets/TapSendButton.svelte";
   import { fly } from "svelte/transition";
+  import HeartEffect from "../Widgets/HeartEffect.svelte";
+
+  var flyTransitionParams = { y: 1000, duration: 1000 };
+
+  var hearts = $state([]);
+
+  function addHeart(props = { x: 0, y: 0, w: 64, h: 64 }) {
+    hearts.push(props);
+  }
+
+  $effect(() => {
+    hearts.shift();
+  });
 </script>
 
 <main class="tap-page">
   <header class="tap-page__header">
-    <NavPanel count={userData.clicked} target="1200" />
+    <NavPanel
+      count={userData.clicked}
+      target={userData.target}
+      grade={userData.grade}
+    />
   </header>
   <section class="tap-page__content">
     <TapContent>
-      <TapLoveWindow count={userData.clicked} slot="content" />
+      <TapLoveWindow {addHeart} slot="content" />
       <TapSendButton slot="button" />
     </TapContent>
   </section>
   {#if router.route === "archive"}
-    <section
-      transition:fly={{ y: 1000, duration: 1000 }}
-      class="tap-page__popup"
-    >
+    <section transition:fly={flyTransitionParams} class="tap-page__popup">
       <PopupWindow>
         <Archive slot="content" {items} />
       </PopupWindow>
     </section>
   {:else if router.route === "about"}
-    <section
-      transition:fly={{ y: 1000, duration: 1000 }}
-      class="tap-page__popup"
-    >
+    <section transition:fly={flyTransitionParams} class="tap-page__popup">
       <PopupWindow>
         <About slot="content" />
       </PopupWindow>
     </section>
   {:else if router.route === "share"}
-    <section
-      transition:fly={{ y: 1000, duration: 1000 }}
-      class="tap-page__popup"
-    >
+    <section transition:fly={flyTransitionParams} class="tap-page__popup">
       <PopupWindow />
     </section>
   {/if}
+  <HeartEffect {hearts} />
 </main>
 
 <style>

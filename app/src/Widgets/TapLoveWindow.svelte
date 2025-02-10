@@ -1,27 +1,42 @@
 <script>
   import { fly } from "svelte/transition";
-  import { imagesByGrade, grades } from "../Shared/Config/rules";
-  let { count } = $props();
-  let imageIndex = $derived(getImageIndex(count));
+  import { imagesByGrade } from "../Shared/Config/rules";
+  import { userData } from "../Entities/User";
+  import TapArea from "./TapArea.svelte";
 
-  function getImageIndex(cnt) {
-    let detected = 0;
-    grades.find((value, index) => {
-      if (cnt < value) {
-        detected = index - 1;
-        return true;
-      }
-      return false;
-    });
-    return detected;
+  let { addHeart } = $props();
+  let transformState = $state({ transform: false });
+
+  /**
+   * @param {PointerEvent & { currentTarget: EventTarget & HTMLDivElement }} event
+   */
+  function onpointerup(event) {
+    transformState.transform = false;
+  }
+
+  /**
+   * @param {PointerEvent & { currentTarget: EventTarget & HTMLDivElement }} event
+   */
+  function onpointerleave(event) {
+    transformState.transform = false;
+  }
+
+  /**
+   * @param {PointerEvent & { currentTarget: EventTarget & HTMLDivElement }} event
+   */
+  function onpointerdown(event) {
+    userData.click();
+    transformState.transform = true;
+    addHeart({ x: event.clientX, y: event.clientY, w: 64, h: 64 });
   }
 </script>
 
-{#key imageIndex}
+{#key userData.grade}
   <div
     in:fly={{ x: -100, duration: 1000 }}
     out:fly={{ x: 100, duration: 1000 }}
-    class="tap-love-window some-dark-container"
+    class="tap-love-window some-dark-container {transformState.transform &&
+      'transformed'}"
   >
     <div class="tap-love-window__header">
       <h3>There is the RED heart</h3>
@@ -34,11 +49,17 @@
     <div class="tap-love-window__image">
       <div
         class="tap-love-image"
-        style="background-image: url({imagesByGrade[imageIndex]})"
+        style="background-image: url({imagesByGrade[userData.grade]})"
       ></div>
     </div>
   </div>
 {/key}
+<TapArea
+  {onpointerdown}
+  {onpointerleave}
+  {onpointerup}
+  grade={userData.grade}
+/>
 
 <style>
   .tap-love-window {
@@ -74,5 +95,8 @@
     background-repeat: no-repeat;
     margin: auto;
     pointer-events: none;
+  }
+  .transformed {
+    transform: scale(0.98);
   }
 </style>
