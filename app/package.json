@@ -4,8 +4,9 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "vite --config vite.dev.config.js",
+    "build": "vite build --config vite.dev.config.js",
+    "gh-page": "vite build --config vite.gh-page.config.js",
     "preview": "vite preview"
   },
   "devDependencies": {

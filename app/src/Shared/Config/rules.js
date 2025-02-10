@@ -6,6 +6,10 @@ import img4 from '/tap/heart-4.png';
 import img5 from '/tap/heart-5.png';
 import img6 from '/tap/heart-6.png';
 
+const tryURL = import.meta.env.BASE_URL;
+const baseURL = !tryURL || tryURL === '/' ? '' : tryURL;
+console.log(`${baseURL}/page/background-2.2.png`)
+
 const node_env = 'DEVELOPMENT';
 const gradesProd = [
     0,
@@ -16,7 +20,6 @@ const gradesProd = [
     24985,
     100000,
 ]
-
 const gradesDev = [
     0,
     10,
@@ -26,9 +29,7 @@ const gradesDev = [
     140,
     200,
 ]
-
 export const grades = node_env === 'DEVELOPMENT' ? gradesDev : gradesProd;
-
 export const imagesByGrade = {
     0: img0,
     1: img1,
@@ -38,12 +39,11 @@ export const imagesByGrade = {
     5: img5,
     6: img6
 }
-
 export const windowStateByGrade = {
     0: {
         background: {
             linearGradient: ['#5e1fa5', '#250c42'],
-            url: '/page/background-2.2.png'
+            url: `${baseURL}/page/background-2.2.png`
         },
         postcard: {
             header: "Just to tap ❤️",
@@ -57,7 +57,7 @@ export const windowStateByGrade = {
     1: {
         background: {
             linearGradient: ['#B53259', '#290727'],
-            url: '/page/background-2.2.png'
+            url: `${baseURL}/page/background-2.2.png`
         },
         postcard: {
             header: "Gentle warmth",
@@ -71,7 +71,7 @@ export const windowStateByGrade = {
     2: {
         background: {
             linearGradient: ['#856CFF', '#191162'],
-            url: '/page/background-2.2.png'
+            url: `${baseURL}/page/background-2.2.png`
         },
         postcard: {
             header: "Tender admiration",
@@ -84,7 +84,7 @@ export const windowStateByGrade = {
     3: {
         background: {
             linearGradient: ['#5e1fa5', '#250c42'],
-            url: '/page/background-2.2.png',
+            url: `${baseURL}/page/background-2.2.png`,
         },
         postcard: {
             header: "Passionate affection",
@@ -97,7 +97,7 @@ export const windowStateByGrade = {
     4: {
         background: {
             linearGradient: ['#F07C93', '#F07C93'],
-            url: '/page/background-1.2.png',
+            url: `${baseURL}/page/background-1.2.png`,
         },
         postcard: {
             header: "Irresistible love",
@@ -111,7 +111,7 @@ export const windowStateByGrade = {
     5: {
         background: {
             linearGradient: ['#FCD9EC', '#FCD9EC'],
-            url: '/page/background-2.2.png',
+            url: `${baseURL}/page/background-2.2.png`,
         },
         postcard: {
             header: "Unbreakable bond",
@@ -124,7 +124,7 @@ export const windowStateByGrade = {
     6: {
         background: {
             linearGradient: ['#FCD9EC', '#F07C93'],
-            url: '/page/background-2.2.png',
+            url: `${baseURL}/page/background-2.2.png`,
         },
         postcard: {
             header: "Pure devotion",
@@ -136,7 +136,6 @@ export const windowStateByGrade = {
         }
     }
 }
-
 export const pagesText = {
     archive: {
         header: "Sent Gifts",

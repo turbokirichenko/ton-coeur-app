@@ -10,7 +10,9 @@
           title: "Web Share API Draft",
           text: "Take a look at this spec!",
         })
-        .then(() => console.log("Successful share"))
+        .then(() => {
+          console.log("success");
+        })
         .catch((error) => console.log("Error sharing", error));
     } else {
       alert("Share not supported on this browser, do it the old way.");
