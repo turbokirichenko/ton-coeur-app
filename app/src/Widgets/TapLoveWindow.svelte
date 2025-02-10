@@ -1,11 +1,12 @@
 <script>
   import { fly } from "svelte/transition";
-  import { imagesByGrade } from "../Shared/Config/rules";
+  import { imagesByGrade, windowStateByGrade } from "../Shared/Config/rules";
   import { userData } from "../Entities/User";
   import TapArea from "./TapArea.svelte";
 
-  let { addHeart } = $props();
-  let transformState = $state({ transform: false });
+  var { addHeart } = $props();
+  var transformState = $state({ transform: false });
+  var postcard = $derived(windowStateByGrade[userData.grade].postcard);
 
   /**
    * @param {PointerEvent & { currentTarget: EventTarget & HTMLDivElement }} event
@@ -39,12 +40,12 @@
       'transformed'}"
   >
     <div class="tap-love-window__header">
-      <h3>There is the RED heart</h3>
+      <h3>{postcard.header}</h3>
     </div>
     <div class="tap-love-window__description">
-      <p>you tap 100,345 and</p>
-      <p>this gift almost be the</p>
-      <p>wonderful in my memory</p>
+      {#each postcard.description as text}
+        <p>{text}</p>
+      {/each}
     </div>
     <div class="tap-love-window__image">
       <div

@@ -1,5 +1,5 @@
 <script>
-  import { imagesByGrade } from "../Shared/Config/rules";
+  import { imagesByGrade, pagesText } from "../Shared/Config/rules";
 
   /**
    * @type {{ items: null | {grade: number, avatar: string | null, date: number}[]}}
@@ -9,7 +9,7 @@
 
 <section class="archive">
   <header class="archive__header">
-    <h3>Your GIFT history</h3>
+    <h3>{pagesText.archive.header}</h3>
   </header>
   <div class="archive__content">
     <div class="gift-history">
@@ -37,7 +37,11 @@
           </div>
         {/each}
       {:else}
-        <span>nothing</span>
+        <div class="nothing-text">
+          {#each pagesText.archive.text as topic}
+            <p>{topic}</p>
+          {/each}
+        </div>
       {/if}
     </div>
   </div>
@@ -48,8 +52,12 @@
     width: 100%;
     height: 100%;
   }
+  .archive__content {
+    height: 100%;
+  }
   .gift-history {
     display: flex;
+    height: 100%;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -95,5 +103,15 @@
     display: block;
     width: 100%;
     height: 100%;
+  }
+  .nothing-text {
+    max-width: 360px;
+    margin: auto;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
   }
 </style>

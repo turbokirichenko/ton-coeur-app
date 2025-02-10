@@ -9,12 +9,12 @@ import img6 from '/tap/heart-6.png';
 const node_env = 'DEVELOPMENT';
 const gradesProd = [
     0,
-    16,
-    32,
+    132,
+    533,
     2025,
     8177,
     24985,
-    101364,
+    100000,
 ]
 
 const gradesDev = [
@@ -44,42 +44,115 @@ export const windowStateByGrade = {
         background: {
             linearGradient: ['#5e1fa5', '#250c42'],
             url: '/page/background-2.2.png'
+        },
+        postcard: {
+            header: "Just to tap ❤️",
+            description: [
+                "A simple touch can create",
+                "something magical",
+                "Love is waiting!",
+            ]
         }
     },
     1: {
         background: {
             linearGradient: ['#B53259', '#290727'],
             url: '/page/background-2.2.png'
+        },
+        postcard: {
+            header: "Gentle warmth",
+            description: [
+                "The spark of something special",
+                "a quiet reminder",
+                "that someone cares"
+            ]
         }
     },
     2: {
         background: {
             linearGradient: ['#856CFF', '#191162'],
             url: '/page/background-2.2.png'
+        },
+        postcard: {
+            header: "Tender admiration",
+            description: [
+                "It’s soft glow of admiration,",
+                "respect and quiet affection"
+            ]
         }
     },
     3: {
         background: {
             linearGradient: ['#5e1fa5', '#250c42'],
             url: '/page/background-2.2.png',
+        },
+        postcard: {
+            header: "Passionate affection",
+            description: [
+                "A deep, fiery love",
+                "that ignites every moment"
+            ]
         }
     },
     4: {
         background: {
             linearGradient: ['#F07C93', '#F07C93'],
             url: '/page/background-1.2.png',
+        },
+        postcard: {
+            header: "Irresistible love",
+            description: [
+                "A magnetic pull", 
+                "a love that stays with you",
+                "no matter what"
+            ]
         }
     },
     5: {
         background: {
             linearGradient: ['#FCD9EC', '#FCD9EC'],
-            url: '/page/background-1.2.png',
+            url: '/page/background-2.2.png',
+        },
+        postcard: {
+            header: "Unbreakable bond",
+            description: [
+                "An eternal connection",
+                "beyond time and distance"
+            ]
         }
     },
     6: {
         background: {
             linearGradient: ['#FCD9EC', '#F07C93'],
             url: '/page/background-2.2.png',
+        },
+        postcard: {
+            header: "Pure devotion",
+            description: [
+                "A promise, a forever, a love",
+                "that asks for nothing in return",
+                "but gives everything"
+            ]
         }
+    }
+}
+
+export const pagesText = {
+    archive: {
+        header: "Sent Gifts",
+        text: [
+            "There's nothing to see here...",
+            "Keep tapping, send gifts, and soon you will see the sent gifts here!",
+        ]
+    },
+    about: {
+        header: "About TonCœur",
+        text: "Sometimes, words are too much, and silence is too little. Share your feelings — exchange your taps for valentines.",
+        sub: "The rules are simple:",
+        list: [
+            "❤️ Tap as many times as the heart you want to send",
+            "❤️ Each heart represents a feeling, growing deeper with every tap",
+            "❤️ Reach the next level of emotions and unlock a new connection!"
+        ]
     }
 }

@@ -19,6 +19,10 @@
     overflow-y: auto;
     padding: 22px 24px;
   }
+  .popup-window__content {
+    width: 100%;
+    height: 100%;
+  }
   .some-dark-2-container {
     background-color: #000000d0;
     border-radius: 20px 20px 0 0;

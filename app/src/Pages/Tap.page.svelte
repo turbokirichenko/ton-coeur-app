@@ -1,7 +1,6 @@
 <script lang="js">
   import { userData } from "../Entities/User";
   import { router } from "../Shared/Lib/router.svelte";
-  import { items } from "../Shared/Lib/items-mock.svelte";
   import About from "../Widgets/About.svelte";
   import Archive from "../Widgets/Archive.svelte";
   import NavPanel from "../Widgets/NavPanel.svelte";
@@ -42,7 +41,7 @@
   {#if router.route === "archive"}
     <section transition:fly={flyTransitionParams} class="tap-page__popup">
       <PopupWindow>
-        <Archive slot="content" {items} />
+        <Archive slot="content" items={null} />
       </PopupWindow>
     </section>
   {:else if router.route === "about"}
