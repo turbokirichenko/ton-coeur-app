@@ -7,8 +7,9 @@
     if (navigator.share) {
       navigator
         .share({
-          title: "Web Share API Draft",
+          title: "Share app",
           text: "Take a look at this spec!",
+          url: `${import.meta.env.VITE_BASE_API_URL ?? ""}/`,
         })
         .then(() => {
           console.log("success");

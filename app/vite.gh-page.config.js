@@ -6,6 +6,10 @@ export default defineConfig(({}) => {
   return {
     plugins: [svelte()],
     envDir: '../deployment/environments/.env.gh-pages',
-    base: '/ton-coeur-app'
+    base: '/ton-coeur-app',
+    build: {
+      outDir: '../docs',
+      emptyOutDir: true, 
+    }
   }
 })
