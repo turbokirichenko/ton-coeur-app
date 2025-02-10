@@ -2,10 +2,26 @@
   import Arrow from "/button/arrow.png";
   import Hearts from "/button/hearts.png";
   import { fly } from "svelte/transition";
+
+  function onclick() {
+    if (navigator.share) {
+      navigator
+        .share({
+          title: "Web Share API Draft",
+          text: "Take a look at this spec!",
+        })
+        .then(() => console.log("Successful share"))
+        .catch((error) => console.log("Error sharing", error));
+    } else {
+      alert("Share not supported on this browser, do it the old way.");
+    }
+  }
 </script>
 
 <button
   transition:fly={{ y: 150, duration: 1000 }}
+  onpointerdown={onclick}
+  {onclick}
   class="send-button some-dark-container"
 >
   <article class="send-button__left-slot">
