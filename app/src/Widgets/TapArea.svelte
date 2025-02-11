@@ -1,16 +1,13 @@
 <script>
   let { onpointerdown, onpointerup, onpointerleave, grade } = $props();
-
-  function setListeners(element) {
-    element.addEventListener("click", onpointerdown);
-    element.addEventListener("onpointerup", onpointerup);
-    element.addEventListener("onpointerleave", onpointerleave);
-  }
 </script>
 
-<button use:setListeners class="tap-area level-{grade} disable-zoom"
-  >click me</button
->
+<div
+  {onpointerdown}
+  {onpointerleave}
+  {onpointerup}
+  class="tap-area level-{grade} disable-zoom"
+></div>
 
 <style>
   .tap-area {

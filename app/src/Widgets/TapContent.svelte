@@ -34,6 +34,7 @@
   .tap-content__button {
     width: 260px;
     height: 81px;
+    position: relative;
   }
 
   @media (max-height: 720px) {

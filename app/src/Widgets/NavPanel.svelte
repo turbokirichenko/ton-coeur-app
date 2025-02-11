@@ -19,12 +19,24 @@
 
 <nav class="nav-panel">
   <div class="nav-panel__buttons">
-    <a href="#top" onclick={() => open("archive")}>
-      <img src={archiveImg} class="archive-img nav-img" alt="archive" />
-    </a>
-    <a href="#top" onclick={() => open("about")}>
-      <img src={questionImg} class="question-img nav-img" alt="question" />
-    </a>
+    <button class="nav-img" onclick={() => open("archive")}>
+      <img
+        src={archiveImg}
+        width="24px"
+        height="24px"
+        class="archive-img"
+        alt="archive"
+      />
+    </button>
+    <button class="nav-img" onclick={() => open("about")}>
+      <img
+        src={questionImg}
+        width="24px"
+        height="24px"
+        class="question-img"
+        alt="question"
+      />
+    </button>
   </div>
   <div class="nav-panel__userinfo">
     <div class="count">
@@ -51,10 +63,17 @@
     padding: 21px 22px;
   }
   .nav-img {
+    margin: 0;
+    padding: 0;
     display: inline-block;
     width: 24px;
     height: 24px;
     margin-right: 20px;
+    background: none;
+  }
+  .archive-img,
+  .question-img {
+    display: block;
   }
   .count {
     min-width: 152px;

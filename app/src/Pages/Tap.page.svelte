@@ -10,9 +10,9 @@
   import TapSendButton from "../Widgets/TapSendButton.svelte";
   import { fly } from "svelte/transition";
   import HeartEffect from "../Widgets/HeartEffect.svelte";
+  import Background from "../Widgets/Background.svelte";
 
   var flyTransitionParams = { y: 1000, duration: 1000 };
-
   var hearts = $state([]);
 
   function addHeart(props = { x: 0, y: 0, w: 64, h: 64 }) {
@@ -25,6 +25,7 @@
 </script>
 
 <main class="tap-page">
+  <Background grade={userData.grade} />
   <header class="tap-page__header">
     <NavPanel
       count={userData.clicked}

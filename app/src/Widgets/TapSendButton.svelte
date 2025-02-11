@@ -3,6 +3,8 @@
   import Hearts from "/button/hearts.png";
   import { fly } from "svelte/transition";
 
+  const f = { y: 150, duration: 1000 };
+
   function onclick() {
     if (navigator.share) {
       navigator
@@ -21,11 +23,7 @@
   }
 </script>
 
-<button
-  transition:fly={{ y: 150, duration: 1000 }}
-  {onclick}
-  class="send-button some-dark-container"
->
+<button class="send-button some-dark-container" transition:fly={f} {onclick}>
   <article class="send-button__left-slot">
     <img class="slot-image" src={Hearts} alt="hearts" />
   </article>
