@@ -1,18 +1,36 @@
 <script>
-  import { userData } from "../Entities/User";
+  import { fly } from "svelte/transition";
+  import Postcard from "./Postcard.svelte";
+  import TapSendButton from "./TapSendButton.svelte";
+  import TapArea from "./TapArea.svelte";
+  import HeartEffect from "./HeartEffect.svelte";
+
+  const flyIn = { x: -100, duration: 1000 };
+  const flyOut = { x: 100, duration: 1000 };
+  const viewMode = "tap";
+
+  var { postcardInfo, listeners, grade, transform, hearts } = $props();
 </script>
 
 <div class="tap-content no-select">
-  <!-- svelte-ignore slot_element_deprecated -->
   <div class="tap-content__window">
-    <slot name="content" />
+    {#key grade}
+      <div
+        in:fly={flyIn}
+        out:fly={flyOut}
+        class="motion {transform && 'transformed'}"
+      >
+        <Postcard {viewMode} {postcardInfo} />
+      </div>
+    {/key}
+    <TapArea {listeners} {grade} />
   </div>
   <div class="tap-content__button">
-    <!-- svelte-ignore slot_element_deprecated -->
-    {#if userData.grade > 0}
-      <slot name="button" />
+    {#if grade > 0}
+      <TapSendButton />
     {/if}
   </div>
+  <HeartEffect {hearts} />
 </div>
 
 <style>
@@ -35,6 +53,14 @@
     width: 260px;
     height: 81px;
     position: relative;
+  }
+  .motion {
+    position: absolute;
+    display: block;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
   }
 
   @media (max-height: 720px) {

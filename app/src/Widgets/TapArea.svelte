@@ -1,13 +1,8 @@
 <script>
-  let { onpointerdown, onpointerup, onpointerleave, grade } = $props();
+  let { listeners, grade } = $props();
 </script>
 
-<div
-  {onpointerdown}
-  {onpointerleave}
-  {onpointerup}
-  class="tap-area level-{grade} disable-zoom"
-></div>
+<div use:listeners class="tap-area level-{grade} disable-zoom"></div>
 
 <style>
   .tap-area {

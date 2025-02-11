@@ -3,27 +3,10 @@
   import Hearts from "/button/hearts.png";
   import { fly } from "svelte/transition";
 
-  const f = { y: 150, duration: 1000 };
-
-  function onclick() {
-    if (navigator.share) {
-      navigator
-        .share({
-          title: "Share app",
-          text: "Take a look at this spec!",
-          url: `${import.meta.env.VITE_BASE_API_URL ?? ""}/`,
-        })
-        .then(() => {
-          console.log("success");
-        })
-        .catch((error) => console.log("Error sharing", error));
-    } else {
-      alert("Share not supported on this browser, do it the old way.");
-    }
-  }
+  const flyOpts = { y: 150, duration: 1000 };
 </script>
 
-<button class="send-button some-dark-container" transition:fly={f} {onclick}>
+<button class="send-button some-dark-container" transition:fly={flyOpts}>
   <article class="send-button__left-slot">
     <img class="slot-image" src={Hearts} alt="hearts" />
   </article>

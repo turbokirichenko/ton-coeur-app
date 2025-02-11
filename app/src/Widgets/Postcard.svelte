@@ -1,13 +1,8 @@
 <script>
-  import { fade } from "svelte/transition";
-
-  var { postcardInfo } = $props();
+  var { viewMode = "view", postcardInfo } = $props();
 </script>
 
-<div
-  transition:fade={postcardInfo.fadeOpt}
-  class="postcard some-dark-container"
->
+<div class="postcard some-dark-container">
   <div class="postcard__header">
     <h3>{postcardInfo.header}</h3>
   </div>
@@ -22,30 +17,31 @@
       style="background-image: url({postcardInfo.image})"
     ></div>
   </div>
-  <div class="postcard__footer">
-    <footer class="postcard-footer">
-      <article class="postcard-footer__from">
-        <div class="gift-sign">
-          <p class="gift-title">from:</p>
-          <p class="gift-mailer">{postcardInfo.from}</p>
-        </div>
-      </article>
-      <article class="postcard-footer__to">
-        <div class="gift-sign">
-          <p class="gift-title">to:</p>
-          <p class="gift-mailer">{postcardInfo.to}</p>
-        </div>
-      </article>
-    </footer>
-  </div>
+  {#if viewMode === "view"}
+    <div class="postcard__footer">
+      <footer class="postcard-footer">
+        <article class="postcard-footer__from">
+          <div class="gift-sign">
+            <p class="gift-title">from:</p>
+            <p class="gift-mailer">{postcardInfo.from}</p>
+          </div>
+        </article>
+        <article class="postcard-footer__to">
+          <div class="gift-sign">
+            <p class="gift-title">to:</p>
+            <p class="gift-mailer">{postcardInfo.to}</p>
+          </div>
+        </article>
+      </footer>
+    </div>
+  {/if}
 </div>
 
 <style>
   .postcard {
-    position: absolute;
+    display: flex;
     width: 100%;
     height: 100%;
-    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 13px;
