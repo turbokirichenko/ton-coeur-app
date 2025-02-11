@@ -77,6 +77,7 @@
     margin: auto;
     width: 100%;
     height: 100%;
+    overflow: hidden;
   }
   .tap-page__popup {
     position: absolute;

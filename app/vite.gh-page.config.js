@@ -5,7 +5,7 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 export default defineConfig(({}) => {
   return {
     plugins: [svelte()],
-    envDir: '../deployment/environments/.env.gh-pages',
+    envDir: '../deployment/environments/gh-page',
     base: '/ton-coeur-app',
     build: {
       outDir: '../docs',

@@ -1,13 +1,16 @@
 <script>
-  let { onpointerdown, onpointerleave, onpointerup, grade } = $props();
+  let { onpointerdown, onpointerup, onpointerleave, grade } = $props();
+
+  function setListeners(element) {
+    element.addEventListener("click", onpointerdown);
+    element.addEventListener("onpointerup", onpointerup);
+    element.addEventListener("onpointerleave", onpointerleave);
+  }
 </script>
 
-<div
-  {onpointerdown}
-  {onpointerleave}
-  {onpointerup}
-  class="tap-area level-{grade}"
-></div>
+<button use:setListeners class="tap-area level-{grade} disable-zoom"
+  >click me</button
+>
 
 <style>
   .tap-area {
@@ -51,5 +54,9 @@
     width: 100%;
     height: 100%;
     opacity: 0;
+  }
+
+  .disable-zoom {
+    touch-action: manipulation;
   }
 </style>

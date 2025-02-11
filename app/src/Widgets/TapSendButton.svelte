@@ -23,7 +23,6 @@
 
 <button
   transition:fly={{ y: 150, duration: 1000 }}
-  onpointerdown={onclick}
   {onclick}
   class="send-button some-dark-container"
 >
