@@ -1,5 +1,5 @@
 <script>
-  import { navigate } from "../Shared/Lib/router.svelte";
+  import { navigate } from "../Shared/Plugins/router.svelte";
 </script>
 
 <section

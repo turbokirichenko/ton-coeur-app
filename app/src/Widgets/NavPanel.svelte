@@ -4,7 +4,7 @@
   import Question from "/nav/question.png";
   import QuestionRed from "/nav/question-red.png";
   import Hearts from "/button/hearts.png";
-  import { router, navigate } from "../Shared/Lib/router.svelte";
+  import { router, navigate } from "../Shared/Plugins/router.svelte";
   import { grades } from "../Shared/Config/rules";
 
   let { count, target, grade } = $props();

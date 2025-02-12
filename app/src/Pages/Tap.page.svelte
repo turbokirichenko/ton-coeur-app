@@ -1,6 +1,6 @@
 <script lang="js">
   import { userData } from "../Entities/User";
-  import { router } from "../Shared/Lib/router.svelte";
+  import { router } from "../Shared/Plugins/router.svelte";
   import { windowStateByGrade, imagesByGrade } from "../Shared/Config/rules";
   import About from "../Widgets/About.svelte";
   import Archive from "../Widgets/Archive.svelte";
@@ -44,7 +44,7 @@
    * @param {PointerEvent & { currentTarget: EventTarget & HTMLDivElement }} event
    */
   function onpointerdown(event) {
-    userData.click();
+    userData.click(event);
     transform = true;
     addHeart({ x: event.clientX, y: event.clientY, w: 64, h: 64 });
   }
