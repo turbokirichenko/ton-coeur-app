@@ -1,4 +1,10 @@
 /**
+ * @typedef IStore
+ * @prop {(key: string, data: string) => Promise<void>} setItem - put to store
+ * @prop {(key: string) => Promise<string>} getItem - get from the store
+ */
+
+/**
  * @typedef ICryptoProvider
  * @prop {(size: number) => Uint8Array<ArrayBuffer>} randomBytes
  * @prop {(buffer: ArrayBuffer | Uint8Array<ArrayBuffer>) => string} pack

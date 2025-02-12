@@ -1,6 +1,8 @@
 import { grades } from "../../Shared/Config/rules";
 
 export class User {
+    /**@type {IStore} */
+    __store;
     /**@type {IBlackBox} */
     __blackbox;
     /**@type {string | null} */
@@ -17,16 +19,27 @@ export class User {
     /** 
      * 
      * @param {IBlackBox} blackbox 
+     * @param {IStore} store
      */
-    constructor(blackbox) {
+    constructor(blackbox, store) {
+        this.__store = store;
         this.__blackbox = blackbox;
-        this.__blackbox.genesis().then((result) => {
-            const [genesis, snapshot] = result
+        this.__init();
+    }
+
+    async __init() {
+        var genesis = await this.__store.getItem('genesis');
+        var snapshot = await this.__store.getItem('snapshot');
+        if (genesis && snapshot) {
+            this.__genesis = sessionStorage.getItem('genesis');
+            this.__snapshot = sessionStorage.getItem('snapshot');
+        } else {
+            const [genesis, snapshot] = await this.__blackbox.genesis();
             this.__genesis = genesis;
             this.__snapshot = snapshot;
-            sessionStorage.setItem('genesis', this.__genesis);
-            sessionStorage.setItem('snapshot', this.__snapshot);
-        });
+            this.__store.setItem('genesis', genesis);
+            this.__store.setItem('snapshot', snapshot);
+        }
     }
 
     __calcCount(snapshot) {
@@ -67,7 +80,8 @@ export class User {
      * @param {PointerEvent & { currentTarget: EventTarget & HTMLDivElement }} event
      */
     async click(event) {
-        this.__snapshot = await this.__blackbox.snapshot({clientX: event.clientX, clientY: event.clientY}, this.__snapshot);
-        sessionStorage.setItem('snapshot', this.__snapshot);
+        var snapshot = await this.__blackbox.snapshot({clientX: event.clientX, clientY: event.clientY}, this.__snapshot);
+        this.__snapshot = snapshot;
+        await sessionStorage.setItem('snapshot', this.__snapshot);
     }
 }
