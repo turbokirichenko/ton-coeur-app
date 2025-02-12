@@ -1,7 +1,6 @@
 <script>
   import Postcard from "../Widgets/Postcard.svelte";
   import Background from "../Widgets/Background.svelte";
-
   import { windowStateByGrade, imagesByGrade } from "../Shared/Config/rules";
   const postcard = windowStateByGrade[2].postcard;
   const image = imagesByGrade[2];
@@ -19,7 +18,7 @@
   <Background grade={2} />
   <header class="view-page__header"></header>
   <section class="view-page__content no-select">
-    <Postcard {postcardInfo} />
+    <Postcard viewMode="tap" {postcardInfo} />
   </section>
 </main>
 
@@ -41,7 +40,7 @@
   .view-page__content {
     margin: auto;
     width: 260px;
-    height: 411px;
+    height: 360px;
     overflow: hidden;
     position: relative;
   }

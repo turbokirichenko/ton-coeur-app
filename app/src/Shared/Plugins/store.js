@@ -2,14 +2,22 @@
  * @implements {IStore}
  */
 export class Store {
-    /** @type {Storage | any} */
+    /** @type {Storage} */
     __origin;
 
     constructor() {
-        if (window.localStorage) {
-            this.__origin = window.localStorage;
+        if (window.sessionStorage) {
+            this.__origin = window.sessionStorage;
         } else {
-            throw new Error('this browser not support a localStorage');
+            const map = new Map();
+            this.__origin = {
+                key: (index) => null,
+                setItem: map.set,
+                getItem: map.get,
+                length: map.size,
+                removeItem: map.delete,
+                clear: map.clear
+            }
         }
     }
     async setItem(key, data) {

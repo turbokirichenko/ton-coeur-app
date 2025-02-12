@@ -2,11 +2,18 @@
   import Arrow from "/button/arrow.png";
   import Hearts from "/button/hearts.png";
   import { fly } from "svelte/transition";
+  import { userData } from "../Entities/User";
 
   const flyOpts = { y: 150, duration: 1000 };
 </script>
 
-<button class="send-button some-dark-container" transition:fly={flyOpts}>
+<button
+  onclick={(event) => {
+    userData.gift(event);
+  }}
+  class="send-button some-dark-container"
+  transition:fly={flyOpts}
+>
   <article class="send-button__left-slot">
     <img class="slot-image" src={Hearts} alt="hearts" />
   </article>

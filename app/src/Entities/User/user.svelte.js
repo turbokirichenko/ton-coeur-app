@@ -1,4 +1,5 @@
 import { grades } from "../../Shared/Config/rules";
+import WebApp from "@twa-dev/sdk";
 
 export class User {
     /**@type {IStore} */
@@ -28,9 +29,9 @@ export class User {
     }
 
     async __init() {
-        var genesis = await this.__store.getItem('genesis');
-        var snapshot = await this.__store.getItem('snapshot');
-        if (genesis && snapshot) {
+        var genesisStore = await this.__store.getItem('genesis');
+        var snapshotStore = await this.__store.getItem('snapshot');
+        if (genesisStore && snapshotStore) {
             this.__genesis = sessionStorage.getItem('genesis');
             this.__snapshot = sessionStorage.getItem('snapshot');
         } else {
@@ -83,5 +84,17 @@ export class User {
         var snapshot = await this.__blackbox.snapshot({clientX: event.clientX, clientY: event.clientY}, this.__snapshot);
         this.__snapshot = snapshot;
         await sessionStorage.setItem('snapshot', this.__snapshot);
+    }
+
+    async gift(event) {
+        try {
+            try {
+               const data = await fetch("https://t.me/collusioner");
+               console.log(data);
+            } catch (err) {
+            }
+        } catch (err) {
+            console.log('telegram feature is not supported')
+        }
     }
 }

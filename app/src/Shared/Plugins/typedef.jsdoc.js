@@ -22,6 +22,21 @@
  */
 
 /**
+ * @typedef IRegister
+ * @prop {(IPaymentData) => Promise<string>} payment
+ * @prop {(signature: string) => Promise<IPaymentData | null>} validate
+ */
+
+/**
+ * @typedef IPaymentData
+ * @prop {string} genesis
+ * @prop {string} snapshot
+ * @prop {string} from
+ * @prop {string} to
+ * @prop {number} key 
+ */
+
+/**
  * @typedef IEventData
  * @prop {number} clientX
  * @prop {number} clientY

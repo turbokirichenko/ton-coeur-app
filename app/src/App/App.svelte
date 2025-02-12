@@ -1,5 +1,6 @@
 <script>
   import Tap from "../Pages/Tap.page.svelte";
+  import View from "../Pages/View.page.svelte";
 </script>
 
 <main id="full-screen" class="main-page">
