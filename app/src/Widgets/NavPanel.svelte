@@ -14,7 +14,7 @@
 
 <nav class="nav-panel">
   <div class="nav-panel__buttons">
-    <button class="nav-img" onclick={() => open("archive")}>
+    <!--<button class="nav-img" onclick={() => open("archive")}>
       <img
         src={archiveImg}
         width="24px"
@@ -22,7 +22,7 @@
         class="archive-img"
         alt="archive"
       />
-    </button>
+    </button>-->
     <button class="nav-img" onclick={() => open("about")}>
       <img
         src={questionImg}

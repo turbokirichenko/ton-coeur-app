@@ -1,6 +1,13 @@
 <script>
   import WebApp from "@twa-dev/sdk";
   import { userData } from "../Entities/User";
+  import { share } from "../Shared/Plugins/share-api";
+  import {
+    SHARE_TEXT,
+    SHARE_TITLE,
+    TG_SHARE_API,
+    TG_APP_LINK,
+  } from "../Shared/Config/constant";
   var from = $state();
   from = getMyNickname();
   var to = $state("");
@@ -20,6 +27,15 @@
       to = `@${to}`;
     }
     const signature = await userData.gift(from, to);
+    const params = `?startapp=${signature}`;
+    const shareLink = `${TG_SHARE_API}${TG_APP_LINK}${params}`;
+    console.log(signature);
+    console.log(shareLink);
+    try {
+      WebApp.openTelegramLink(shareLink);
+    } catch (err) {
+      share(shareLink, SHARE_TITLE, SHARE_TEXT);
+    }
   }
 
   function getMyNickname() {

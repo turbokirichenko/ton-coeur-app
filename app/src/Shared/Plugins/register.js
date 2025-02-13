@@ -36,6 +36,7 @@ export class Register {
             var dataEncode = window.btoa(`${this.__crypto.pack(encryptData.cipher)},${this.__crypto.pack(encryptData.iv)}`);
             return dataEncode;
         } catch (err) {
+            console.error(err);
             return null;
         }
     }

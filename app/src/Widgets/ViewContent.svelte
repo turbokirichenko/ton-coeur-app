@@ -3,6 +3,7 @@
   import TapArea from "./TapArea.svelte";
   import HeartEffect from "./HeartEffect.svelte";
   import Star from "../../public/button/star.png";
+  import WebApp from "@twa-dev/sdk";
 
   var { postcardInfo } = $props();
   var hearts = $state([]);
@@ -45,27 +46,41 @@
   function listeners(element) {
     element.addEventListener("pointerdown", onpointerdown);
   }
+
+  /**
+   *
+   */
+  function onclick() {
+    try {
+      //WebApp.shareToStory();
+    } catch (err) {
+      console.error(err);
+    }
+  }
 </script>
 
 <section class="view-space no-select">
   {#if postcardInfo.grade > 0 && postcardInfo.grade !== 404}
-    <div class="view-space__placeholder">
+    <button class="un-btn view-space__placeholder">
       <div class="placeholder some-dark-container">
         <img src={Star} alt="star" width="48px" height="48px" />
         <div class="placeholder__text">
           <p>
-            To get it, <strong class="strong">{postcardInfo.clicked}</strong>
-            clicks were made! Good news to share that in your story!
+            <strong class="strong">{postcardInfo.from}</strong>
+            made
+            <strong class="strong">{postcardInfo.clicked}</strong>
+            clicks to give this gift. Share it in the
+            <strong class="strong">story</strong>
           </p>
         </div>
       </div>
-    </div>
+    </button>
     <TapArea {listeners} grade={postcardInfo.grade} />
     <HeartEffect {hearts} {flyParams} />
   {/if}
   <div class="view-space__content">
     <div class="motion">
-      <Postcard viewMode="view" {postcardInfo} />
+      <Postcard viewMode="tap" {postcardInfo} />
     </div>
   </div>
   <div class="view-space__foreground"></div>
@@ -82,7 +97,10 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 40px;
+    gap: 20px;
+  }
+  .un-btn {
+    all: unset;
   }
   .view-space__placeholder {
     display: block;
@@ -100,16 +118,15 @@
   }
   .placeholder__text {
     width: 70%;
-    height: 52px;
   }
   .placeholder__text > p {
     font-size: 12px;
-    line-height: 16px;
+    line-height: 14px;
     text-align: left;
   }
   .strong {
     font-weight: 800;
-    font-size: 13px;
+    font-size: 10.5px;
     color: #f9f9f9;
   }
   .view-space__content {

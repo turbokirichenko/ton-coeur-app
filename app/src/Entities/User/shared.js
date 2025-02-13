@@ -5,18 +5,10 @@ import { SnapshotParser } from "../../Shared/Plugins/parser";
 import { Crypto } from "../../Shared/Plugins/crypto";
 import { Store } from "../../Shared/Plugins/store";
 import { Register } from "../../Shared/Plugins/register";
-import WebApp from "@twa-dev/sdk";
-import { CloudStore } from "../../Shared/Plugins/cloud-store";
 
 const token = import.meta.env.VITE_SHARE_TOKEN;
 const crypto = new Crypto();
-var store;
-try {
-    WebApp.CloudStorage.getItem('test')
-    store = new CloudStore();
-} catch (err) {
-    store = new Store();
-}
+var store = new Store();
 const parser = new SnapshotParser();
 const validator = new Validator(parser);
 const blackbox = new BlackBox(crypto, validator, parser);

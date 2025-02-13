@@ -4,17 +4,19 @@
   import WebApp from "@twa-dev/sdk";
   import { fade } from "svelte/transition";
 
-  var location = $state(window.location);
-  var signature = $derived(searchParams(location.search));
+  var signature = $state(null);
 
   function searchParams(search) {
     var urlParams = new URLSearchParams(search);
-    return urlParams.get("id") ?? null;
+    return urlParams.get("startapp") ?? null;
   }
   try {
     WebApp.enableClosingConfirmation();
+    console.log("startapp", WebApp.initDataUnsafe.start_param);
+    signature =
+      WebApp.initDataUnsafe.start_param || searchParams(window.location.search);
   } catch (err) {
-    console.error(err);
+    signature = searchParams(window.location.search);
   }
 </script>
 
