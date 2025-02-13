@@ -5,13 +5,6 @@
   import ViewNavPanel from "../Widgets/ViewNavPanel.svelte";
   import { userData } from "../Entities/User";
   const { signature } = $props();
-  $effect(() => {
-    //console.log(signature);
-    userData.validate(signature).then((result) => {
-      //console.log(signature);
-      console.log("signature", result);
-    });
-  });
 </script>
 
 {#await userData.validate(signature) then result}

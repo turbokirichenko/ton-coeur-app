@@ -5,10 +5,18 @@ import { SnapshotParser } from "../../Shared/Plugins/parser";
 import { Crypto } from "../../Shared/Plugins/crypto";
 import { Store } from "../../Shared/Plugins/store";
 import { Register } from "../../Shared/Plugins/register";
+import WebApp from "@twa-dev/sdk";
+import { CloudStore } from "../../Shared/Plugins/cloud-store";
 
 const token = import.meta.env.VITE_SHARE_TOKEN;
 const crypto = new Crypto();
-const store = new Store();
+var store;
+try {
+    WebApp.CloudStorage.getItem('test')
+    store = new CloudStore();
+} catch (err) {
+    store = new Store();
+}
 const parser = new SnapshotParser();
 const validator = new Validator(parser);
 const blackbox = new BlackBox(crypto, validator, parser);
@@ -17,10 +25,8 @@ export const userData = new User(blackbox, register, store);
 
 async function testSignature() {
     const sign = await userData.gift('@collusioner', '@detka229');
-    console.log('sign result', sign);
     if (sign) {
         const data = await userData.validate(sign);
-        console.log('validate result', data);
     }
 }
 

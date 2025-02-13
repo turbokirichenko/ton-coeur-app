@@ -1,7 +1,7 @@
 /**
  * @typedef IStore
  * @prop {(key: string, data: string) => Promise<void>} setItem - put to store
- * @prop {(key: string) => Promise<string>} getItem - get from the store
+ * @prop {(key: string) => Promise<string | void>} getItem - get from the store
  */
 
 /** 

@@ -34,10 +34,8 @@ export class Register {
             var dataString = this.__makeDataString(data);
             var encryptData = await this.__crypto.encrypt(dataString, importToken);
             var dataEncode = window.btoa(`${this.__crypto.pack(encryptData.cipher)},${this.__crypto.pack(encryptData.iv)}`);
-            console.log('encode', dataEncode);
             return dataEncode;
         } catch (err) {
-            console.log(err);
             return null;
         }
     }
@@ -54,10 +52,9 @@ export class Register {
             var token = this.__crypto.unpack(genesis);
             var hashed = await this.__crypto.digest(new Uint8Array(token));
             var packedHash = this.__crypto.pack(hashed);
-            console.log('hash', packedHash, parsed.genesis);
             return packedHash === parsed.genesis;
         } catch (err) {
-            console.log(err);
+            console.error(err);
             return false;
         }
     }
@@ -79,7 +76,6 @@ export class Register {
      */
     __parseDataString(dataString) {
         var strArray = dataString.split(',');
-        console.log(strArray);
         return {
             grade: Number(strArray[0]),
             count: Number(strArray[1]),
@@ -99,13 +95,12 @@ export class Register {
             var importToken = await this.__crypto.importKey(unpackKey);
             var dataDecoded = window.atob(signature);
             var [ cipher, iv ] = dataDecoded.split(',');
-            console.log('decoded', cipher);
             var cipherByte = this.__crypto.unpack(cipher);
             var ivByte = new Uint8Array(this.__crypto.unpack(iv));
             var decrypted = await this.__crypto.decrypt(cipherByte, importToken, ivByte);
             return this.__parseDataString(decrypted)
         } catch (err) {
-            console.log(err);
+            console.error(err);
             return null;
         }
     }

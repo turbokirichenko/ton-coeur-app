@@ -21,12 +21,9 @@ export class Store {
         }
     }
     async setItem(key, data) {
-        this.__origin.setItem(key, data);
+        return this.__origin.setItem(key, data);
     }
     async getItem(key) {
         return this.__origin.getItem(key);
-    }
-    async key(index) {
-        return this.__origin.key(index);
     }
 }

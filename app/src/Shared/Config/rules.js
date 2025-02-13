@@ -9,7 +9,6 @@ import img404 from '/tap/heart-404.png';
 
 const tryURL = import.meta.env.BASE_URL;
 const baseURL = !tryURL || tryURL === '/' ? '' : tryURL;
-console.log(`${baseURL}/page/background-2.2.png`)
 
 const node_env = 'DEVELOPMENT';
 const gradesProd = [

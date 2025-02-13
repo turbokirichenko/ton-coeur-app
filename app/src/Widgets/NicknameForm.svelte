@@ -9,12 +9,10 @@
   async function onclick(event) {
     alertMessage = "";
     if (to.length < 6) {
-      console.log("alert");
       alertMessage = "Min length of nickname is 5!";
       return;
     }
     if (from.length > 32 || to.length > 32) {
-      console.log("alert");
       alertMessage = "Max length of nickname is 32!";
       return;
     }
@@ -22,11 +20,6 @@
       to = `@${to}`;
     }
     const signature = await userData.gift(from, to);
-    try {
-      WebApp.showAlert(signature);
-    } catch (err) {
-      console.log("result", signature);
-    }
   }
 
   function getMyNickname() {
@@ -85,6 +78,9 @@
     flex-direction: column;
     width: 190px;
     gap: 13px;
+  }
+  .nickname-form__alert {
+    font-size: 11px;
   }
   .postcard-footer {
     position: relative;

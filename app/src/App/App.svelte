@@ -11,6 +11,11 @@
     var urlParams = new URLSearchParams(search);
     return urlParams.get("id") ?? null;
   }
+  try {
+    WebApp.enableClosingConfirmation();
+  } catch (err) {
+    console.error(err);
+  }
 </script>
 
 <main in:fade={{ duration: 3000 }} id="full-screen" class="main-page">

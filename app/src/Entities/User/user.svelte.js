@@ -34,8 +34,8 @@ export class User {
         var genesisStore = await this.__store.getItem('genesis');
         var snapshotStore = await this.__store.getItem('snapshot');
         if (genesisStore && snapshotStore) {
-            this.__genesis = sessionStorage.getItem('genesis');
-            this.__snapshot = sessionStorage.getItem('snapshot');
+            this.__genesis = await this.__store.getItem('genesis') || null;
+            this.__snapshot = await this.__store.getItem('snapshot') || null;
         } else {
             const [genesis, snapshot] = await this.__blackbox.genesis();
             this.__genesis = genesis;
@@ -132,7 +132,6 @@ export class User {
             await this.__store.setItem('snapshot', newSnapshot);
             return signature;
         } catch (err) {
-            console.log(err);
             return null;
         }
     }
@@ -152,7 +151,6 @@ export class User {
                 to: res.to ?? '',
             }
         } catch (err) {
-            console.log(err);
             return {
                 count: 0,
                 grade: 404,
