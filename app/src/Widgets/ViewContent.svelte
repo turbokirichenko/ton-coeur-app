@@ -6,6 +6,7 @@
 
   var { postcardInfo } = $props();
   var hearts = $state([]);
+  var flyParams = { y: -200, duration: 1000 };
   var transform = $state(false);
 
   function addHeart(props = { x: 0, y: 0, w: 64, h: 64 }) {
@@ -15,6 +16,19 @@
   $effect(() => {
     hearts.shift();
   });
+
+  setInterval(() => {
+    addHeart(genHeart());
+  }, 1000);
+
+  function genHeart() {
+    return {
+      x: Math.random() * window.innerWidth,
+      y: Math.random() * window.innerHeight,
+      w: 64,
+      h: 64,
+    };
+  }
 
   /**
    * @param {PointerEvent & { currentTarget: EventTarget & HTMLDivElement }} event
@@ -47,12 +61,12 @@
   </div>
   <div class="view-space__content">
     <div class="motion">
-      <Postcard viewMode="tap" {postcardInfo} />
+      <Postcard viewMode="view" {postcardInfo} />
     </div>
   </div>
   <div class="view-space__foreground"></div>
   <TapArea {listeners} grade={postcardInfo.grade} />
-  <HeartEffect {hearts} />
+  <HeartEffect {hearts} {flyParams} />
 </section>
 
 <style>
@@ -100,7 +114,7 @@
     display: block;
     position: relative;
     width: 260px;
-    height: 360px;
+    height: 411px;
   }
   .motion {
     display: block;
