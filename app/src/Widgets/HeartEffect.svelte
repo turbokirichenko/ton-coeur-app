@@ -1,8 +1,7 @@
 <script>
   import HeartFly from "/effect/vecteezy_red-heart-icon_45925862.png";
   import { fly } from "svelte/transition";
-  const { hearts } = $props();
-  const flyParams = { y: -150, duration: 500 };
+  const { hearts, flyParams = { y: -150, duration: 500 } } = $props();
 </script>
 
 {#each hearts as heart}
