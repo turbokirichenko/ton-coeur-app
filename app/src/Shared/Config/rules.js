@@ -47,6 +47,7 @@ export const windowStateByGrade = {
         },
         postcard: {
             header: "Just to tap ❤️",
+            animation: false,
             description: [
                 "A simple touch can create",
                 "something magical",
@@ -61,6 +62,7 @@ export const windowStateByGrade = {
         },
         postcard: {
             header: "Gentle warmth",
+            animation: false,
             description: [
                 "The spark of something special",
                 "a quiet reminder",
@@ -75,6 +77,7 @@ export const windowStateByGrade = {
         },
         postcard: {
             header: "Tender admiration",
+            animation: 'beat',
             description: [
                 "It’s soft glow of admiration,",
                 "respect and quiet affection"
@@ -88,6 +91,7 @@ export const windowStateByGrade = {
         },
         postcard: {
             header: "Passionate affection",
+            animation: 'beat',
             description: [
                 "A deep, fiery love",
                 "that ignites every moment"
@@ -101,6 +105,7 @@ export const windowStateByGrade = {
         },
         postcard: {
             header: "Irresistible love",
+            animation: 'fly',
             description: [
                 "A magnetic pull", 
                 "a love that stays with you",
@@ -115,6 +120,7 @@ export const windowStateByGrade = {
         },
         postcard: {
             header: "Unbreakable bond",
+            animation: 'scale',
             description: [
                 "An eternal connection",
                 "beyond time and distance"
@@ -128,6 +134,7 @@ export const windowStateByGrade = {
         },
         postcard: {
             header: "Pure devotion",
+            animation: 'scale',
             description: [
                 "A promise, a forever, a love",
                 "that asks for nothing in return",

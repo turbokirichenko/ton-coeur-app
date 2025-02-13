@@ -1,12 +1,20 @@
 <script>
-  import Postcard from "../Widgets/Postcard.svelte";
   import Background from "../Widgets/Background.svelte";
-  import { windowStateByGrade, imagesByGrade } from "../Shared/Config/rules";
-  const postcard = windowStateByGrade[2].postcard;
-  const image = imagesByGrade[2];
+  import {
+    windowStateByGrade,
+    imagesByGrade,
+    grades,
+  } from "../Shared/Config/rules";
+  import ViewContent from "../Widgets/ViewContent.svelte";
+  import ViewNavPanel from "../Widgets/ViewNavPanel.svelte";
+  const grade = 2;
+  const postcard = windowStateByGrade[grade].postcard;
+  const image = imagesByGrade[grade];
 
   const postcardInfo = {
     ...postcard,
+    clicked: grades[grade],
+    grade,
     image,
     fadeOpt: { duration: 2000 },
     from: "@drakulaForce",
@@ -15,11 +23,13 @@
 </script>
 
 <main class="view-page">
-  <Background grade={2} />
-  <header class="view-page__header"></header>
-  <section class="view-page__content no-select">
-    <Postcard viewMode="tap" {postcardInfo} />
+  <Background grade={postcardInfo.grade} />
+  <section class="view-page__content">
+    <ViewContent {postcardInfo} />
   </section>
+  <header class="view-page__header">
+    <ViewNavPanel />
+  </header>
 </main>
 
 <style>
@@ -39,8 +49,8 @@
   }
   .view-page__content {
     margin: auto;
-    width: 260px;
-    height: 360px;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
     position: relative;
   }

@@ -13,7 +13,7 @@
   </div>
   <div class="postcard__image">
     <div
-      class="postcard-image"
+      class="postcard-image animation-{postcardInfo.animation}"
       style="background-image: url({postcardInfo.image})"
     ></div>
   </div>
@@ -56,8 +56,42 @@
     height: 42px;
   }
   .postcard__image {
+    position: relative;
     width: 207px;
     height: 207px;
+  }
+  .animation-beat {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation-name: heartbeat;
+    animation-duration: 2s;
+    animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    animation-iteration-count: infinite;
+  }
+  .animation-fly {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation-name: fly;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
+  }
+  .animation-scale {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    animation-name: scale;
+    animation-duration: 4s;
+    animation-timing-function: ease-in-out;
+    animation-iteration-count: infinite;
   }
   .postcard-image {
     display: block;
