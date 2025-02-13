@@ -6,12 +6,20 @@
     SHARE_TEXT,
     SHARE_TITLE,
   } from "../Shared/Config/constant";
+  import WebApp from "@twa-dev/sdk";
 
   function onclick(event) {
     const link = SHARE_LINK;
     const title = SHARE_TEXT;
     const text = SHARE_TITLE;
     share(link, title, text);
+  }
+
+  let avatar = $state({ src: null });
+  try {
+    avatar.src = WebApp.initDataUnsafe.user.photo_url;
+  } catch (err) {
+    avatar.src = null;
   }
 </script>
 
@@ -22,7 +30,17 @@
     </button>
   </div>
   <div class="nav-panel__userinfo">
-    <div class="avatar"></div>
+    {#if avatar.src === null}
+      <div class="avatar"></div>
+    {:else}
+      <img
+        src={avatar.src}
+        width="36px"
+        height="36px"
+        class="avatar"
+        alt="avatar"
+      />
+    {/if}
   </div>
 </nav>
 
@@ -43,9 +61,16 @@
     height: 24px;
     margin-right: 20px;
     background: none;
+    position: relative;
   }
   .a-img {
     display: block;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 100;
   }
   .avatar {
     display: block;

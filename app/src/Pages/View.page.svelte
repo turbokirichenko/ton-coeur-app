@@ -10,8 +10,12 @@
 {#await userData.validate(signature) then result}
   <main class="view-page">
     <Background background={windowStateByGrade[result.grade].background} />
+    <header class="view-page__header">
+      <ViewNavPanel />
+    </header>
     <section class="view-page__content">
       <ViewContent
+        {signature}
         postcardInfo={{
           ...windowStateByGrade[result.grade].postcard,
           fadeOpt: { duration: 2000 },
@@ -22,9 +26,6 @@
         }}
       />
     </section>
-    <header class="view-page__header">
-      <ViewNavPanel />
-    </header>
   </main>
 {:catch}
   <div>

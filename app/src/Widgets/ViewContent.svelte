@@ -4,8 +4,13 @@
   import HeartEffect from "./HeartEffect.svelte";
   import Star from "../../public/button/star.png";
   import WebApp from "@twa-dev/sdk";
+  import {
+    REPOSITORY_IMAGE,
+    TG_SHARE_API,
+    TG_APP_LINK,
+  } from "../Shared/Config/constant";
 
-  var { postcardInfo } = $props();
+  var { postcardInfo, signature } = $props();
   var hearts = $state([]);
   var flyParams = { y: -200, duration: 1000 };
   var transform = $state(false);
@@ -52,7 +57,16 @@
    */
   function onclick() {
     try {
-      //WebApp.shareToStory();
+      console.log("openopenopen");
+      const url = `${REPOSITORY_IMAGE}${postcardInfo}.png`;
+      const params = `?startapp=${signature}`;
+      const shareLink = `${TG_SHARE_API}${TG_APP_LINK}${params}`;
+      WebApp.shareToStory(url, {
+        widget_link: {
+          name: "postcard",
+          url: shareLink,
+        },
+      });
     } catch (err) {
       console.error(err);
     }
@@ -61,8 +75,10 @@
 
 <section class="view-space no-select">
   {#if postcardInfo.grade > 0 && postcardInfo.grade !== 404}
-    <button class="un-btn view-space__placeholder">
-      <div class="placeholder some-dark-container">
+    <TapArea {listeners} grade={postcardInfo.grade} />
+    <HeartEffect {hearts} {flyParams} />
+    <div class="view-space__placeholder">
+      <button {onclick} class="un-btn placeholder some-dark-container">
         <img src={Star} alt="star" width="48px" height="48px" />
         <div class="placeholder__text">
           <p>
@@ -73,14 +89,12 @@
             <strong class="strong">story</strong>
           </p>
         </div>
-      </div>
-    </button>
-    <TapArea {listeners} grade={postcardInfo.grade} />
-    <HeartEffect {hearts} {flyParams} />
+      </button>
+    </div>
   {/if}
   <div class="view-space__content">
     <div class="motion">
-      <Postcard viewMode="tap" {postcardInfo} />
+      <Postcard viewMode="view" {postcardInfo} />
     </div>
   </div>
   <div class="view-space__foreground"></div>
@@ -99,15 +113,16 @@
     align-items: center;
     gap: 20px;
   }
-  .un-btn {
-    all: unset;
-  }
   .view-space__placeholder {
     display: block;
+    position: relative;
     width: 260px;
     height: 80px;
   }
   .placeholder {
+    position: absolute;
+    top: 0;
+    left: 0;
     display: flex;
     width: 100%;
     height: 100%;
@@ -115,14 +130,18 @@
     justify-content: space-between;
     align-items: center;
     padding: 20px;
+    border-radius: 16px;
+    background-color: #00000088;
   }
   .placeholder__text {
     width: 70%;
+    touch-action: none;
   }
   .placeholder__text > p {
     font-size: 12px;
     line-height: 14px;
     text-align: left;
+    touch-action: none;
   }
   .strong {
     font-weight: 800;

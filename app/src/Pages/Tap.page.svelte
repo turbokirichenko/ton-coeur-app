@@ -132,6 +132,8 @@
     height: 80px;
   }
   .tap-page__content {
+    top: 0;
+    left: 0;
     margin: auto;
     width: 100%;
     height: 100%;

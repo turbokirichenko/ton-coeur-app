@@ -1,15 +1,19 @@
 <script>
-  import Archive from "/nav/archive.png";
-  import ArchiveRed from "/nav/archive-red.png";
   import Question from "/nav/question.png";
   import QuestionRed from "/nav/question-red.png";
   import Hearts from "/button/hearts.png";
   import { grades } from "../Shared/Config/rules";
+  import WebApp from "@twa-dev/sdk";
 
   let { count, target, grade, open, state } = $props();
-
-  let archiveImg = $derived(state === "archive" ? ArchiveRed : Archive);
   let questionImg = $derived(state === "about" ? QuestionRed : Question);
+
+  let avatar = { src: null };
+  try {
+    avatar.src = WebApp.initDataUnsafe.user.photo_url;
+  } catch (err) {
+    avatar.src = null;
+  }
 </script>
 
 <nav class="nav-panel">
@@ -44,7 +48,11 @@
       {/if}
       <img class="count-img" src={Hearts} alt="count hearts" />
     </div>
-    <div class="avatar"></div>
+    {#if avatar.src === null}
+      <div class="avatar"></div>
+    {:else}
+      <img src={avatar.src} class="avatar" alt="avatar" />
+    {/if}
   </div>
 </nav>
 
@@ -69,7 +77,6 @@
   .nav-img:hover {
     border: none;
   }
-  .archive-img,
   .question-img {
     display: block;
   }

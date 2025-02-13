@@ -1,4 +1,6 @@
 <script>
+  import { TG_ORIGIN } from "../Shared/Config/constant";
+
   var { viewMode = "view", postcardInfo } = $props();
 </script>
 
@@ -23,13 +25,27 @@
         <article class="postcard-footer__from">
           <div class="gift-sign">
             <p class="gift-title">from:</p>
-            <p class="gift-mailer">{postcardInfo.from}</p>
+            <p class="gift-mailer">
+              <a
+                class="a-link"
+                href={`${TG_ORIGIN}${postcardInfo.from.substr(1)}`}
+                target="_blank"
+                >{postcardInfo.from}
+              </a>
+            </p>
           </div>
         </article>
         <article class="postcard-footer__to">
           <div class="gift-sign">
             <p class="gift-title">to:</p>
-            <p class="gift-mailer">{postcardInfo.to}</p>
+            <p class="gift-mailer">
+              <a
+                class="a-link"
+                href={`${TG_ORIGIN}${postcardInfo.to.substr(1)}`}
+                target="_blank"
+                >{postcardInfo.to}
+              </a>
+            </p>
           </div>
         </article>
       </footer>
@@ -136,5 +152,16 @@
     color: #f65a5f;
     font-weight: 800;
     font-size: 14px;
+  }
+  .a-link {
+    font-weight: bold;
+    color: #f65a5f;
+    text-decoration: inherit;
+    transition: color 0.25s;
+    transition: font-size 0.25s;
+  }
+  .a-link:hover {
+    color: #fcd9ec;
+    font-size: 15px;
   }
 </style>
