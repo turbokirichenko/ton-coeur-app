@@ -4,17 +4,12 @@
   import Question from "/nav/question.png";
   import QuestionRed from "/nav/question-red.png";
   import Hearts from "/button/hearts.png";
-  import { router, navigate } from "../Shared/Plugins/router.svelte";
   import { grades } from "../Shared/Config/rules";
 
-  let { count, target, grade } = $props();
+  let { count, target, grade, open, state } = $props();
 
-  let archiveImg = $derived(router.route === "archive" ? ArchiveRed : Archive);
-  let questionImg = $derived(router.route === "about" ? QuestionRed : Question);
-
-  function open(route) {
-    router.route === route ? navigate("") : navigate(route);
-  }
+  let archiveImg = $derived(state === "archive" ? ArchiveRed : Archive);
+  let questionImg = $derived(state === "about" ? QuestionRed : Question);
 </script>
 
 <nav class="nav-panel">
@@ -70,6 +65,9 @@
     height: 24px;
     margin-right: 20px;
     background: none;
+  }
+  .nav-img:hover {
+    border: none;
   }
   .archive-img,
   .question-img {

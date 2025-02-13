@@ -1,11 +1,13 @@
 <script>
-  import { navigate } from "../Shared/Plugins/router.svelte";
+  var { open } = $props();
+
+  function onpointerup(event) {
+    open("");
+  }
 </script>
 
-<section
-  onpointerup={() => navigate("")}
-  class="popup-window some-dark-2-container"
->
+<section {onpointerup} class="popup-window some-dark-2-container">
+  <!-- svelte-ignore slot_element_deprecated -->
   <div class="popup-window__content">
     <slot name="content" />
   </div>
@@ -24,7 +26,7 @@
     height: 100%;
   }
   .some-dark-2-container {
-    background-color: #000000d0;
+    background-color: #000000e0;
     border-radius: 20px 20px 0 0;
   }
 </style>

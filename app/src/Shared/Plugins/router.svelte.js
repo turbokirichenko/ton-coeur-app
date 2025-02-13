@@ -2,7 +2,7 @@
  * @type {{ route: '' | 'archive' | 'about' | 'share' }}
  */
 export const router = $state({
-    route: ''
+    route: 'about'
 })
 
 export const navigate = (route) => {

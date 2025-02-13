@@ -4,14 +4,6 @@
  * @prop {(key: string) => Promise<string>} getItem - get from the store
  */
 
-/**
- * @typedef ICryptoProvider
- * @prop {(size: number) => Uint8Array<ArrayBuffer>} randomBytes
- * @prop {(buffer: ArrayBuffer | Uint8Array<ArrayBuffer>) => string} pack
- * @prop {(packed: string) => ArrayBuffer} unpack
- * @prop {(data: Uint8Array<ArrayBuffer>) => Promise<ArrayBuffer>} digest
- */
-
 /** 
  * @typedef IValidator
  * @prop {(hashsum: string) => Promise<string>} init - initiated snapshot

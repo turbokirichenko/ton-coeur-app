@@ -1,6 +1,5 @@
 <script lang="js">
   import { userData } from "../Entities/User";
-  import { router } from "../Shared/Plugins/router.svelte";
   import { windowStateByGrade, imagesByGrade } from "../Shared/Config/rules";
   import About from "../Widgets/About.svelte";
   import Archive from "../Widgets/Archive.svelte";
@@ -19,6 +18,16 @@
     from: "@drakulaForce",
     to: "@myprincess1234",
   });
+
+  /** pop up mode
+   * @type {{ state: '' | 'archive' | 'about' | 'share' }}
+   */
+  let popup = $state({
+    state: userData.clicked > 0 ? "" : "about",
+  });
+  let openPopup = (str) => {
+    popup.state = str;
+  };
 
   function addHeart(props = { x: 0, y: 0, w: 64, h: 64 }) {
     hearts.push(props);
@@ -64,6 +73,8 @@
   <Background grade={userData.grade} />
   <header class="tap-page__header">
     <NavPanel
+      state={popup.state}
+      open={openPopup}
       count={userData.clicked}
       target={userData.target}
       grade={userData.grade}
@@ -78,21 +89,21 @@
       {hearts}
     />
   </section>
-  {#if router.route === "archive"}
+  {#if popup.state === "archive"}
     <section transition:fly={flyTransitionParams} class="tap-page__popup">
-      <PopupWindow>
+      <PopupWindow open={openPopup}>
         <Archive slot="content" items={null} />
       </PopupWindow>
     </section>
-  {:else if router.route === "about"}
+  {:else if popup.state === "about"}
     <section transition:fly={flyTransitionParams} class="tap-page__popup">
-      <PopupWindow>
+      <PopupWindow open={openPopup}>
         <About slot="content" />
       </PopupWindow>
     </section>
-  {:else if router.route === "share"}
+  {:else if popup.state === "share"}
     <section transition:fly={flyTransitionParams} class="tap-page__popup">
-      <PopupWindow />
+      <PopupWindow open={openPopup} />
     </section>
   {/if}
 </main>
@@ -122,7 +133,7 @@
     position: absolute;
     width: 96vw;
     max-width: 560px;
-    height: max(380px, calc(100vh - 96px));
+    height: max(380px, calc(100vh - 70px));
     left: 50%;
     transform: translate(-50%, 0);
     bottom: 0;

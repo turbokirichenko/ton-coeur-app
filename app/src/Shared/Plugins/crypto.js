@@ -44,7 +44,7 @@ const unpack = packed => {
 /**
  * @returns {Promise<CryptoKey>}
  */
-const generateAesKey = async () =>
+const generateKey = async () =>
     window.crypto.subtle.generateKey({
         name: 'AES-GCM',
         length: 256,
@@ -54,7 +54,7 @@ const generateAesKey = async () =>
  * @param {CryptoKey} key 
  * @returns {Promise<ArrayBuffer>}
  */
-const exportAesKey = async (key) => {
+const exportKey = async (key) => {
     return window.crypto.subtle.exportKey("raw", key);
 }
 
@@ -62,7 +62,7 @@ const exportAesKey = async (key) => {
  * @param {ArrayBuffer} raw 
  * @returns {Promise<CryptoKey>}
  */
-const importAesKey = async (raw) => {
+const importKey = async (raw) => {
     return window.crypto.subtle.importKey("raw", raw, {
         name: 'AES-GCM',
         length: 256
@@ -142,7 +142,9 @@ export class Crypto {
     pack = pack;
     unpack = unpack;
     digest = digest;
-    generateKey = generateAesKey;
+    generateKey = generateKey;
+    importKey = importKey;
+    exportKey = exportKey;
     generateIv = generateIv;
     encode = encode;
     decode = decode;
