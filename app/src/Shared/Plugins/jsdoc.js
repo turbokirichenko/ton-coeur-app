@@ -8,15 +8,18 @@
  * @typedef IValidator
  * @prop {(hashsum: string) => Promise<string>} init - initiated snapshot
  * @prop {(eventData: IEventData, snapshot: string) => Promise<string>} snap - updated snap
+ */
+
+/**
+ * @typedef ISnapshotParser
  * @prop {(data: string) => ISnapshot} parse
- * @prop {(data: ISnapshot) => string} setup
- * 
+ * @prop {(data: ISnapshot) => string} setup 
  */
 
 /**
  * @typedef IRegister
  * @prop {(IPaymentData) => Promise<string>} payment
- * @prop {(signature: string) => Promise<IPaymentData | null>} validate
+ * @prop {(signature: string) => Promise<IGiftData | null>} validate
  */
 
 /**
@@ -26,6 +29,14 @@
  * @prop {string} from
  * @prop {string} to
  * @prop {number} key 
+ */
+
+/**
+ * @typedef IGiftData
+ * @prop {number} grade
+ * @prop {number} count
+ * @prop {string} from
+ * @prop {string} to
  */
 
 /**

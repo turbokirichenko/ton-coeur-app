@@ -17,7 +17,7 @@
       style="background-image: url({postcardInfo.image})"
     ></div>
   </div>
-  {#if viewMode === "view"}
+  {#if viewMode === "view" && postcardInfo.from && postcardInfo.to}
     <div class="postcard__footer">
       <footer class="postcard-footer">
         <article class="postcard-footer__from">

@@ -11,6 +11,9 @@
   <header class="archive__header">
     <h3>{pagesText.archive.header}</h3>
   </header>
+  <div class="archive__description">
+    <p>{@html pagesText.archive.description}</p>
+  </div>
   <div class="archive__content">
     <div class="gift-history">
       {#if items}
@@ -51,6 +54,14 @@
   .archive {
     width: 100%;
     height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 13px;
+  }
+  .archive__description {
+    width: 210px;
   }
   .archive__content {
     height: 100%;

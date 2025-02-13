@@ -4,7 +4,15 @@ const MIN_DELAY_INTERVAL = 25;
  * @implements {IValidator}
  */
 export class Validator {
-    constructor() {}
+    /** @type {ISnapshotParser} */
+    __parser;
+
+    /**
+     * @param {ISnapshotParser} parser 
+     */
+    constructor(parser) {
+        this.__parser = parser
+    }
 
     /** generate initial snapshot for session
      * 
@@ -19,7 +27,7 @@ export class Validator {
             timestamp: Date.now(),
             nonce: 0,
         }
-        return this.setup(snapshot)
+        return this.__parser.setup(snapshot)
     }
 
     /** update snapshot
@@ -29,7 +37,7 @@ export class Validator {
      * @returns 
      */
     async snap(eventData, snapshot) {
-        const parsed = this.parse(snapshot);
+        const parsed = this.__parser.parse(snapshot);
         const current = Date.now();
         if (current - parsed.timestamp < MIN_DELAY_INTERVAL) {
             return snapshot;
@@ -43,30 +51,5 @@ export class Validator {
         }
         const stringify = JSON.stringify(object);
         return window.btoa(stringify);
-    }
-
-    /** parse snapshot
-     * 
-     * @param {string} snapshotBase64 - base64 encoded snapshot
-     * @returns {ISnapshot}
-     *  
-     */
-    parse(snapshotBase64) {
-        var symbols = (window.atob)
-            ? window.atob(snapshotBase64)
-            : Buffer.from(snapshotBase64, 'base64').toString();
-        return JSON.parse(symbols);
-    }
-
-    /** encode snapshote
-     * 
-     * @param {ISnapshot} snapshot 
-     * @returns {string} - base64 encoded snapshot
-     */
-    setup(snapshot) {
-        var symbols = JSON.stringify(snapshot);
-        return (window.btoa) 
-            ? window.btoa(symbols) 
-            : Buffer.from(symbols).toString('base64')
     }
 }

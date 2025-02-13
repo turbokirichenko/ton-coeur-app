@@ -2,14 +2,14 @@
   import Arrow from "/button/arrow.png";
   import Hearts from "/button/hearts.png";
   import { fly } from "svelte/transition";
-  import { userData } from "../Entities/User";
 
+  var { open } = $props();
   const flyOpts = { y: 150, duration: 1000 };
 </script>
 
 <button
   onclick={(event) => {
-    userData.gift(event);
+    open("share");
   }}
   class="send-button some-dark-container"
   transition:fly={flyOpts}

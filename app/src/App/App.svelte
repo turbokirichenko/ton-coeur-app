@@ -1,6 +1,7 @@
 <script>
   import Tap from "../Pages/Tap.page.svelte";
   import View from "../Pages/View.page.svelte";
+  import WebApp from "@twa-dev/sdk";
   import { fade } from "svelte/transition";
 
   var location = $state(window.location);
@@ -8,13 +9,13 @@
 
   function searchParams(search) {
     var urlParams = new URLSearchParams(search);
-    return urlParams.get("id");
+    return urlParams.get("id") ?? null;
   }
 </script>
 
 <main in:fade={{ duration: 3000 }} id="full-screen" class="main-page">
   {#if signature}
-    <View />
+    <View {signature} />
   {:else}
     <Tap />
   {/if}

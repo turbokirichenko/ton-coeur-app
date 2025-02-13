@@ -8,6 +8,7 @@
   import TapContent from "../Widgets/TapContent.svelte";
   import { fly } from "svelte/transition";
   import Background from "../Widgets/Background.svelte";
+  import Share from "../Widgets/Share.svelte";
 
   var flyTransitionParams = { y: 1000, duration: 1000 };
   var hearts = $state([]);
@@ -15,19 +16,23 @@
   const postcardInfo = $derived({
     ...windowStateByGrade[userData.grade].postcard,
     image: imagesByGrade[userData.grade],
-    from: "@drakulaForce",
-    to: "@myprincess1234",
   });
 
   /** pop up mode
    * @type {{ state: '' | 'archive' | 'about' | 'share' }}
    */
-  let popup = $state({
-    state: userData.clicked > 0 ? "" : "about",
-  });
+  let popup = $state({ state: "" });
   let openPopup = (str) => {
     popup.state = str;
   };
+
+  $effect(() => {
+    if (userData.clicked === 0) {
+      popup.state = "about";
+    } else {
+      popup.state = "";
+    }
+  });
 
   function addHeart(props = { x: 0, y: 0, w: 64, h: 64 }) {
     hearts.push(props);
@@ -70,7 +75,7 @@
 </script>
 
 <main class="tap-page">
-  <Background grade={userData.grade} />
+  <Background background={windowStateByGrade[userData.grade].background} />
   <header class="tap-page__header">
     <NavPanel
       state={popup.state}
@@ -82,6 +87,7 @@
   </header>
   <section class="tap-page__content">
     <TapContent
+      open={openPopup}
       {listeners}
       {transform}
       {postcardInfo}
@@ -103,7 +109,9 @@
     </section>
   {:else if popup.state === "share"}
     <section transition:fly={flyTransitionParams} class="tap-page__popup">
-      <PopupWindow open={openPopup} />
+      <PopupWindow open={openPopup}>
+        <Share slot="content" />
+      </PopupWindow>
     </section>
   {/if}
 </main>

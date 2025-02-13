@@ -9,7 +9,7 @@
   const flyOut = { x: 100, duration: 1000 };
   const viewMode = "tap";
 
-  var { postcardInfo, listeners, grade, transform, hearts } = $props();
+  var { open, postcardInfo, listeners, grade, transform, hearts } = $props();
 </script>
 
 <div class="tap-content no-select">
@@ -27,7 +27,7 @@
   </div>
   <div class="tap-content__button">
     {#if grade > 0}
-      <TapSendButton />
+      <TapSendButton {open} />
     {/if}
   </div>
   <HeartEffect {hearts} />

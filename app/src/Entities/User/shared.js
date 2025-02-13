@@ -1,30 +1,27 @@
 import { User } from "./user.svelte";
 import { BlackBox } from "../../Shared/Plugins/blackbox";
 import { Validator } from "../../Shared/Plugins/validator";
+import { SnapshotParser } from "../../Shared/Plugins/parser";
 import { Crypto } from "../../Shared/Plugins/crypto";
 import { Store } from "../../Shared/Plugins/store";
 import { Register } from "../../Shared/Plugins/register";
 
-const validator = new Validator();
+const token = import.meta.env.VITE_SHARE_TOKEN;
 const crypto = new Crypto();
-const blackbox = new BlackBox(crypto, validator);
 const store = new Store();
+const parser = new SnapshotParser();
+const validator = new Validator(parser);
+const blackbox = new BlackBox(crypto, validator, parser);
+const register = new Register(token, crypto, parser);
+export const userData = new User(blackbox, register, store);
 
-async function test() {
-    const token = await crypto.generateKey();
-    const exportToken = await crypto.exportKey(token);
-    const data = crypto.pack(exportToken);
-    const register = new Register(data, crypto);
-    const signature = await register.payment({
-        genesis: "12345678",
-        snapshot: "12345678",
-        from: '@collusioner',
-        to: '@shurochka1396',
-        key: 4
-    });
-    const paymentData = await register.validate(signature);
-    console.log(signature, paymentData);
+async function testSignature() {
+    const sign = await userData.gift('@collusioner', '@detka229');
+    console.log('sign result', sign);
+    if (sign) {
+        const data = await userData.validate(sign);
+        console.log('validate result', data);
+    }
 }
-export const userData = new User(blackbox, store);
 
-test();
+//testSignature();

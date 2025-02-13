@@ -5,6 +5,7 @@ import img3 from '/tap/heart-3.png';
 import img4 from '/tap/heart-4.png';
 import img5 from '/tap/heart-5.png';
 import img6 from '/tap/heart-6.png';
+import img404 from '/tap/heart-404.png';
 
 const tryURL = import.meta.env.BASE_URL;
 const baseURL = !tryURL || tryURL === '/' ? '' : tryURL;
@@ -37,7 +38,8 @@ export const imagesByGrade = {
     3: img3,
     4: img4,
     5: img5,
-    6: img6
+    6: img6,
+    404: img404,
 }
 export const windowStateByGrade = {
     0: {
@@ -46,6 +48,7 @@ export const windowStateByGrade = {
             url: `${baseURL}/page/background-2.2.png`
         },
         postcard: {
+            image: imagesByGrade[0],
             header: "Just to tap ❤️",
             animation: false,
             description: [
@@ -61,6 +64,7 @@ export const windowStateByGrade = {
             url: `${baseURL}/page/background-2.2.png`
         },
         postcard: {
+            image: imagesByGrade[1],
             header: "Gentle warmth",
             animation: false,
             description: [
@@ -76,6 +80,7 @@ export const windowStateByGrade = {
             url: `${baseURL}/page/background-2.2.png`
         },
         postcard: {
+            image: imagesByGrade[2],
             header: "Tender admiration",
             animation: 'beat',
             description: [
@@ -90,6 +95,7 @@ export const windowStateByGrade = {
             url: `${baseURL}/page/background-2.2.png`,
         },
         postcard: {
+            image: imagesByGrade[3],
             header: "Passionate affection",
             animation: 'beat',
             description: [
@@ -104,6 +110,7 @@ export const windowStateByGrade = {
             url: `${baseURL}/page/background-1.2.png`,
         },
         postcard: {
+            image: imagesByGrade[4],
             header: "Irresistible love",
             animation: 'fly',
             description: [
@@ -119,6 +126,7 @@ export const windowStateByGrade = {
             url: `${baseURL}/page/background-2.2.png`,
         },
         postcard: {
+            image: imagesByGrade[5],
             header: "Unbreakable bond",
             animation: 'scale',
             description: [
@@ -133,6 +141,7 @@ export const windowStateByGrade = {
             url: `${baseURL}/page/background-2.2.png`,
         },
         postcard: {
+            image: imagesByGrade[6],
             header: "Pure devotion",
             animation: 'scale',
             description: [
@@ -141,11 +150,28 @@ export const windowStateByGrade = {
                 "but gives everything"
             ]
         }
+    },
+    404: {
+        background: {
+            linearGradient: ['#2C0855', '#000000'],
+            url: `${baseURL}/page/background-2.2.png`,
+        },
+        postcard: {
+            image: imagesByGrade[404],
+            header: "404",
+            animation: 'scale',
+            description: [
+                "Here is empty page :(",
+                "You'll find your present",
+                "But not here"
+            ]
+        }
     }
 }
 export const pagesText = {
     archive: {
         header: "Sent Gifts",
+        description: "Here you can find the gifts you sent",
         text: [
             "There's nothing to see here...",
             "Keep tapping, send gifts, and soon you will see the sent gifts here!",

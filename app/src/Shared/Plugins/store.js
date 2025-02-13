@@ -11,7 +11,7 @@ export class Store {
         } else {
             const map = new Map();
             this.__origin = {
-                key: (index) => null,
+                key: (index) => Object.keys(map)[index],
                 setItem: map.set,
                 getItem: map.get,
                 length: map.size,
@@ -25,5 +25,8 @@ export class Store {
     }
     async getItem(key) {
         return this.__origin.getItem(key);
+    }
+    async key(index) {
+        return this.__origin.key(index);
     }
 }

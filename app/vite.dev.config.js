@@ -5,7 +5,7 @@ import { svelte } from '@sveltejs/vite-plugin-svelte'
 export default defineConfig(({}) => {
   return {
     plugins: [svelte()],
-    envDir: '../deployment/environments/.env.app.dev',
+    envDir: '../deployment/environments/app',
     base: '/dev'
   }
 })

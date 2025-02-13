@@ -1,9 +1,6 @@
 <script>
   import { fade } from "svelte/transition";
-  import { windowStateByGrade } from "../Shared/Config/rules";
-
-  var { grade } = $props();
-  var background = $derived(windowStateByGrade[grade].background);
+  var { background } = $props();
 </script>
 
 {#key background}

@@ -8,14 +8,18 @@ export class BlackBox {
     __crypto;
     /** @type {IValidator} */
     __validator;
+    /** @type {ISnapshotParser} */
+    __parser;
 
     /**
      * @param {ICryptoProvider} crypto
      * @param {IValidator} validator 
+     * @param {ISnapshotParser} parser
      */
-    constructor(crypto, validator) {
+    constructor(crypto, validator, parser) {
         this.__crypto = crypto;
         this.__validator = validator;
+        this.__parser = parser
     }
 
     /** create initial state
@@ -42,10 +46,10 @@ export class BlackBox {
     }
 
     parse(data) {
-        return this.__validator.parse(data);
+        return this.__parser.parse(data);
     }
 
     setup(data) {
-        return this.__validator.setup(data);
+        return this.__parser.setup(data);
     }
 }

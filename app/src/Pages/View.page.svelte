@@ -1,36 +1,43 @@
 <script>
   import Background from "../Widgets/Background.svelte";
-  import {
-    windowStateByGrade,
-    imagesByGrade,
-    grades,
-  } from "../Shared/Config/rules";
+  import { windowStateByGrade } from "../Shared/Config/rules";
   import ViewContent from "../Widgets/ViewContent.svelte";
   import ViewNavPanel from "../Widgets/ViewNavPanel.svelte";
-  const grade = 2;
-  const postcard = windowStateByGrade[grade].postcard;
-  const image = imagesByGrade[grade];
-
-  const postcardInfo = {
-    ...postcard,
-    clicked: grades[grade],
-    grade,
-    image,
-    fadeOpt: { duration: 2000 },
-    from: "@drakulaForce",
-    to: "@myprincess1234",
-  };
+  import { userData } from "../Entities/User";
+  const { signature } = $props();
+  $effect(() => {
+    //console.log(signature);
+    userData.validate(signature).then((result) => {
+      //console.log(signature);
+      console.log("signature", result);
+    });
+  });
 </script>
 
-<main class="view-page">
-  <Background grade={postcardInfo.grade} />
-  <section class="view-page__content">
-    <ViewContent {postcardInfo} />
-  </section>
-  <header class="view-page__header">
-    <ViewNavPanel />
-  </header>
-</main>
+{#await userData.validate(signature) then result}
+  <main class="view-page">
+    <Background background={windowStateByGrade[result.grade].background} />
+    <section class="view-page__content">
+      <ViewContent
+        postcardInfo={{
+          ...windowStateByGrade[result.grade].postcard,
+          fadeOpt: { duration: 2000 },
+          clicked: result.count,
+          from: result.from,
+          to: result.to,
+          grade: result.grade,
+        }}
+      />
+    </section>
+    <header class="view-page__header">
+      <ViewNavPanel />
+    </header>
+  </main>
+{:catch}
+  <div>
+    <h3>404</h3>
+  </div>
+{/await}
 
 <style>
   .view-page {
