@@ -25,7 +25,7 @@ export class Validator {
             genesis: hashsum,
             eventData: { clientX: 0, clientY: 0 },
             timestamp: Date.now(),
-            nonce: 49766401,
+            nonce: 0,
         }
         return this.__parser.setup(snapshot)
     }
