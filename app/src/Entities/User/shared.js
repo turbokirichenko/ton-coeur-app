@@ -20,6 +20,15 @@ async function testSignature() {
     if (sign) {
         const data = await userData.validate(sign);
     }
+    const [genesis, snapshot] = await blackbox.genesis();
+    const signed = register.payment({
+        genesis,
+        snapshot,
+        from: '@collusioner',
+        to: '@shurochka1396',
+        key: 7,
+    });
+    console.log('sogned', signed);
 }
 
-//testSignature();
+testSignature();

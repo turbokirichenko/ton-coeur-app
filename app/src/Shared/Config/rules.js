@@ -6,6 +6,7 @@ import img4 from '/tap/heart-4.png';
 import img5 from '/tap/heart-5.png';
 import img6 from '/tap/heart-6.png';
 import img404 from '/tap/heart-404.png';
+import img7 from '/tap/heart-7.jpg';
 
 const tryURL = import.meta.env.BASE_URL;
 const baseURL = !tryURL || tryURL === '/' ? '' : tryURL;
@@ -19,6 +20,7 @@ const gradesProd = [
     8177,
     24985,
     100000,
+    49766400
 ]
 const gradesDev = [
     0,
@@ -28,6 +30,7 @@ const gradesDev = [
     90,
     140,
     200,
+    49766400
 ]
 export const grades = gradesProd
 export const imagesByGrade = {
@@ -38,6 +41,7 @@ export const imagesByGrade = {
     4: img4,
     5: img5,
     6: img6,
+    7: img7,
     404: img404,
 }
 export const windowStateByGrade = {
@@ -163,6 +167,21 @@ export const windowStateByGrade = {
                 "Here is empty page :(",
                 "You'll find your present",
                 "But not here"
+            ]
+        }
+    },
+    7: {
+        background: {
+            linearGradient: ['#DAE478', '#E97B25'],
+            url: `${baseURL}/page/background-1.2.png`,
+        },
+        postcard: {
+            image: img7,
+            header: "Here we are",
+            animation: false,
+            description: [
+                "49,766,400 we were together",
+                "and we will be",
             ]
         }
     }
