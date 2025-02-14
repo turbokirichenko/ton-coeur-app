@@ -17,12 +17,16 @@
 
 <nav class="nav-panel">
   <div class="nav-panel__buttons">
-    <div class="count">
-      <button class="nav-img scaling" {onclick}>
-        <img src={Play} width="18px" height="18px" class="a-img" alt="share" />
-      </button>
+    <button class="un-btn count" {onclick}>
+      <img
+        class="nav-img scaling"
+        src={Play}
+        width="18px"
+        height="18px"
+        alt="share"
+      />
       <span class="count-text">make your own</span>
-    </div>
+    </button>
   </div>
   <div class="nav-panel__userinfo">
     {#if avatar.src === null}
@@ -48,14 +52,21 @@
     align-items: center;
     padding: 21px 22px;
   }
+  .un-btn {
+    all: unset;
+    cursor: pointer;
+  }
   .count {
+    position: absolute;
+    top: 22px;
+    left: 21px;
+    z-index: 100;
     min-width: 152px;
     display: flex;
     flex-direction: row;
     align-items: center;
-    gap: 0px;
+    gap: 2px;
     justify-content: flex-end;
-    float: left;
     background-color: #00000088;
     border-radius: 15px;
     height: 36px;
@@ -70,15 +81,6 @@
     margin-right: 20px;
     background: none;
     position: relative;
-  }
-  .a-img {
-    display: block;
-    position: absolute;
-    width: 18px;
-    height: 18px;
-    top: 0;
-    left: 0;
-    z-index: 100;
   }
   .avatar {
     display: block;
