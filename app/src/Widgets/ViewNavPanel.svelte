@@ -3,7 +3,7 @@
   import WebApp from "@twa-dev/sdk";
 
   function onclick(event) {
-    window.location.replace("/");
+    window.location.replace("/ton-coeur-app");
   }
 
   let avatar = $state({ src: null });
