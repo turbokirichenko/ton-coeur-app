@@ -29,7 +29,7 @@ const gradesDev = [
     140,
     200,
 ]
-export const grades = node_env === 'DEVELOPMENT' ? gradesDev : gradesProd;
+export const grades = gradesProd
 export const imagesByGrade = {
     0: img0,
     1: img1,

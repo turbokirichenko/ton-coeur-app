@@ -148,7 +148,7 @@
     font-size: 11px;
   }
   .gift-mailer {
-    font-family: "Gloria Hallelujah";
+    font-family: "Gloria Hallelujah", "Comfortaa", Arial, Helvetica, sans-serif;
     color: #f65a5f;
     font-weight: 800;
     font-size: 14px;
@@ -159,6 +159,7 @@
     text-decoration: inherit;
     transition: color 0.25s;
     transition: font-size 0.25s;
+    font-family: "Gloria Hallelujah", "Comfortaa", Arial, Helvetica, sans-serif;
   }
   .a-link:hover {
     color: #fcd9ec;

@@ -135,3 +135,9 @@ button:focus, button:active:focus, button.active:focus {
   font-family: "Comfortaa";
   src: url("/fonts/Comfortaa-Medium.ttf");
 }
+
+@font-face {
+  font-family: "Gloria Hallelujah";
+  src: url("/fonts/GloriaHallelujah-Regular.ttf");
+}
+

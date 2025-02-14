@@ -57,13 +57,12 @@
    */
   function onclick() {
     try {
-      console.log("openopenopen");
-      const url = `${REPOSITORY_IMAGE}${postcardInfo}.png`;
+      const url = `https://raw.githubusercontent.com/turbokirichenko/ton-coeur-app/refs/heads/main/app/public/snaps/${postcardInfo.grade}.png`; //`${REPOSITORY_IMAGE}${postcardInfo}.png`;
       const params = `?startapp=${signature}`;
       const shareLink = `${TG_SHARE_API}${TG_APP_LINK}${params}`;
       WebApp.shareToStory(url, {
         widget_link: {
-          name: "postcard",
+          name: "@toncœur ❤️",
           url: shareLink,
         },
       });
