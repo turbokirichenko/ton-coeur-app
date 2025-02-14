@@ -21,13 +21,11 @@
 </script>
 
 <main in:fade={{ duration: 3000 }} id="full-screen" class="main-page">
-  <section class="main-page__content">
-    {#if signature}
-      <View {signature} />
-    {:else}
-      <Tap />
-    {/if}
-  </section>
+  {#if signature}
+    <View {signature} />
+  {:else}
+    <Tap />
+  {/if}
 </main>
 
 <style>
@@ -36,11 +34,5 @@
     height: 100vh;
     overflow-y: hidden;
     overflow-x: hidden;
-  }
-  .main-page__content {
-    display: block;
-    width: 100%;
-    height: 100%;
-    position: relative;
   }
 </style>
