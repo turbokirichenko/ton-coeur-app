@@ -57,9 +57,8 @@
    */
   function onclick() {
     try {
-      const url = `https://raw.githubusercontent.com/turbokirichenko/ton-coeur-app/refs/heads/main/app/public/snaps/${postcardInfo.grade}.png`; //`${REPOSITORY_IMAGE}${postcardInfo}.png`;
-      const params = `?startapp=${signature}`;
-      const shareLink = `${TG_SHARE_API}${TG_APP_LINK}${params}`;
+      const url = `https://raw.githubusercontent.com/turbokirichenko/ton-coeur-app/refs/heads/main/app/public/snaps/${postcardInfo.grade}.png`;
+      const shareLink = `https://t.me/toncoeurbot/toncoeur`;
       WebApp.shareToStory(url, {
         widget_link: {
           name: "@toncœur ❤️",
