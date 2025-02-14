@@ -1,9 +1,10 @@
 <script>
   import Play from "/button/play.png";
   import WebApp from "@twa-dev/sdk";
+  var { clear } = $props();
 
   function onclick(event) {
-    window.location.replace("/ton-coeur-app/");
+    clear();
   }
 
   let avatar = $state({ src: null });
@@ -16,9 +17,12 @@
 
 <nav class="nav-panel">
   <div class="nav-panel__buttons">
-    <button class="nav-img" {onclick}>
-      <img src={Play} width="24px" height="24px" class="a-img" alt="share" />
-    </button>
+    <div class="count">
+      <button class="nav-img scaling" {onclick}>
+        <img src={Play} width="18px" height="18px" class="a-img" alt="share" />
+      </button>
+      <span class="count-text">make your own</span>
+    </div>
   </div>
   <div class="nav-panel__userinfo">
     {#if avatar.src === null}
@@ -44,12 +48,25 @@
     align-items: center;
     padding: 21px 22px;
   }
+  .count {
+    min-width: 152px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0px;
+    justify-content: flex-end;
+    float: left;
+    background-color: #00000088;
+    border-radius: 15px;
+    height: 36px;
+    padding: 0px 12px;
+  }
   .nav-img {
     margin: 0;
     padding: 0;
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    width: 18px;
+    height: 18px;
     margin-right: 20px;
     background: none;
     position: relative;
@@ -57,8 +74,8 @@
   .a-img {
     display: block;
     position: absolute;
-    width: 100%;
-    height: 100%;
+    width: 18px;
+    height: 18px;
     top: 0;
     left: 0;
     z-index: 100;

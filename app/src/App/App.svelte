@@ -5,6 +5,9 @@
   import { fade } from "svelte/transition";
 
   var signature = $state(null);
+  var clear = () => {
+    signature = null;
+  };
 
   function searchParams(search) {
     var urlParams = new URLSearchParams(search);
@@ -12,7 +15,6 @@
   }
   try {
     WebApp.enableClosingConfirmation();
-    console.log("startapp", WebApp.initDataUnsafe.start_param);
     signature =
       WebApp.initDataUnsafe.start_param || searchParams(window.location.search);
   } catch (err) {
@@ -22,7 +24,7 @@
 
 <main in:fade={{ duration: 3000 }} id="full-screen" class="main-page">
   {#if signature}
-    <View {signature} />
+    <View {signature} {clear} />
   {:else}
     <Tap />
   {/if}

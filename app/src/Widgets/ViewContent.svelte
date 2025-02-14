@@ -104,13 +104,13 @@
     position: relative;
     width: 100%;
     height: 100%;
-    top: 0;
+    top: 0px;
     left: 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 20px;
+    gap: 16px;
   }
   .view-space__placeholder {
     display: block;
@@ -150,6 +150,7 @@
   .view-space__content {
     display: block;
     position: relative;
+    top: 0px;
     width: 260px;
     height: 411px;
   }
@@ -160,5 +161,20 @@
     position: absolute;
     top: 0;
     left: 0;
+  }
+
+  @media (max-height: 600px) {
+    .view-space {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      top: 30px;
+      left: 0;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 13px;
+    }
   }
 </style>

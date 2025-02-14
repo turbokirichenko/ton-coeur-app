@@ -4,14 +4,14 @@
   import ViewContent from "../Widgets/ViewContent.svelte";
   import ViewNavPanel from "../Widgets/ViewNavPanel.svelte";
   import { userData } from "../Entities/User";
-  const { signature } = $props();
+  const { signature, clear } = $props();
 </script>
 
 {#await userData.validate(signature) then result}
   <main class="view-page">
     <Background background={windowStateByGrade[result.grade].background} />
     <header class="view-page__header">
-      <ViewNavPanel />
+      <ViewNavPanel {clear} />
     </header>
     <section class="view-page__content">
       <ViewContent
