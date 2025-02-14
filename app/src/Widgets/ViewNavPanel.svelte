@@ -1,18 +1,9 @@
 <script>
-  import Share from "/button/share.png";
-  import { share } from "../Shared/Plugins/share-api";
-  import {
-    SHARE_LINK,
-    SHARE_TEXT,
-    SHARE_TITLE,
-  } from "../Shared/Config/constant";
+  import Play from "/button/play.png";
   import WebApp from "@twa-dev/sdk";
 
   function onclick(event) {
-    const link = SHARE_LINK;
-    const title = SHARE_TEXT;
-    const text = SHARE_TITLE;
-    share(link, title, text);
+    window.location.replace("/");
   }
 
   let avatar = $state({ src: null });
@@ -26,7 +17,7 @@
 <nav class="nav-panel">
   <div class="nav-panel__buttons">
     <button class="nav-img" {onclick}>
-      <img src={Share} width="24px" height="24px" class="a-img" alt="share" />
+      <img src={Play} width="24px" height="24px" class="a-img" alt="share" />
     </button>
   </div>
   <div class="nav-panel__userinfo">
